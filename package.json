@@ -4,7 +4,10 @@
   "description": "A todo web application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node index"
+  },
+  "engines": {
+    "node": ">=8.7.0"
   },
   "repository": {
     "type": "git",
@@ -23,5 +26,12 @@
   "bugs": {
     "url": "https://github.com/aoch/razoch/issues"
   },
-  "homepage": "https://github.com/aoch/razoch#readme"
+  "homepage": "https://github.com/aoch/razoch#readme",
+  "dependencies": {
+    "express": "4.16.2"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.6.1"
+  }
 }
