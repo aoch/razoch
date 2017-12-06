@@ -1,10 +1,15 @@
 import express from 'express'
 import spdy from 'spdy'
+import path from 'path'
 import fs from 'fs'
 
 const server = express()
 
-server.get('*', (request, response) => response.send('hello andrew').end())
+// Tell Express which directory to use to serve files from
+server.use(express.static(path.join(__dirname, '..', 'client')))
+
+// Tell Express to redirect all requests back to the default route
+server.get('*', (request, response, next) => response.redirect('/'))
 
 const {
   env: {
@@ -22,6 +27,7 @@ const callback = (error) => {
   }
 }
 
+// Define credentials to support HTTPS
 const options = {
   key: fs.readFileSync('./server.key'),
   cert: fs.readFileSync('./server.crt'),
