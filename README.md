@@ -1,5 +1,5 @@
 # Introduction
-A Todo application written in React. 
+A Todo application written in React.
 
 It can be run in **production** mode or **development** mode
 
@@ -7,25 +7,21 @@ It can be run in **production** mode or **development** mode
 * Install the version of node specified in the package.json file
 * Install the packages needed by the application
 ```
-$ npm install
+$ npm run clean
 ```
 
 # Development Run Steps
-* Run the server
+* Run the server in development mode
 ```
-$ npm run development:start:server
+$ npm run watch
 ```
 
 # Production Run Steps
-* Build the client
+* Build the code
 ```
-$ npm run production:build:client
+$ npm run build
 ```
-* Build the server
+* Run the server in production mode
 ```
-$ npm run production:build:server
-```
-* Run the server
-```
-$ npm run production:start:server
+$ npm run start
 ```
