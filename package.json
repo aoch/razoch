@@ -2,11 +2,11 @@
   "name": "razoch",
   "version": "1.0.0",
   "description": "A Todo web application",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "clean": "rm -rf build node_modules && npm install",
     "build": "webpack -p && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
-    "start": "node build/server/index",
+    "start": "node build/server/server",
     "shebang": "npm run clean && npm run build && npm run start"
   },
   "engines": {
