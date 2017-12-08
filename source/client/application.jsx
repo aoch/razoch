@@ -6,10 +6,10 @@ class Application extends Component {
 	// 	super(props)
 	// 	this.state = { value: '' }
 	// }
-	state = { 
-		value: '' 
+	state = {
+		value: ''
 	}
-	
+
 	render() {
 		return (
 			<div>
@@ -27,4 +27,4 @@ class Application extends Component {
 const domNode = document.querySelector("main")
 const element = <Application greeting="Hello" /> // new Application({ greeting: 'Hello' })
 
-ReactDOM.render(element, domNode)
+ReactDOM.render(element, domNode);
