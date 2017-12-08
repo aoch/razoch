@@ -1,5 +1,4 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpack from 'webpack'
 import path from 'path'
 
 const config = {
@@ -11,7 +10,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(jsx?)$/,
         exclude: [/node_modules/, /build/],
         use: 'babel-loader'
       }
@@ -20,7 +19,10 @@ const config = {
   plugins: [new HtmlWebpackPlugin({
     title: 'Todos',
     template: 'source/client/index.html'
-  })]
+  })],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  }
 }
 
 export default config
