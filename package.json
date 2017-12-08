@@ -8,7 +8,7 @@
     "build": "webpack -p && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
     "start": "node build/server/server",
     "shebang": "npm run clean && npm run build && npm run start",
-    "precommit": "eslint source/**/*.js source/**/*.jsx "
+    "precommit": "eslint source/**/*.js source/**/*.jsx"
   },
   "engines": {
     "node": "8.9.1",
@@ -59,6 +59,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "html-webpack-plugin": "2.30.1",
+    "husky": "^0.14.3",
     "webpack": "3.10.0"
   }
 }
