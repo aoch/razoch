@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import InputBox from './components/InputBox'
 
 const Application = (props) => <InputBox greeting={props.greeting} />
