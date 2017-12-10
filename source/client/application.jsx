@@ -1,25 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
+import InputBox from './components/InputBox'
 
-class Application extends Component {
-  state = {
-    value: ''
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>{this.props.greeting} {this.state.value}</h1>
-        <input type="text" onChange={this.onChange} />
-      </div>
-    )
-  }
-
-  onChange = (event) => {
-    const { value } = event.target
-    this.setState({ value })
-  }
-}
+const Application = (props) => <InputBox greeting={props.greeting} />
 
 const domNode = document.querySelector('main')
 const element = <Application greeting='Hello' />
