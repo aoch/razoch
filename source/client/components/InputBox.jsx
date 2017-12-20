@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Clock from './Clock';
 
 class InputBox extends Component {
   state = {
@@ -13,6 +14,7 @@ class InputBox extends Component {
       <div>
         <h1>{greeting} {value}</h1>
         <input type="text" onChange={this.updateText} />
+        <Clock style={{borderColor: "red", borderWidth: "1", borderStyle: "solid"}} />
       </div>
     )
   }
