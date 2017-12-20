@@ -12,7 +12,7 @@ export default class Clock extends Component {
 
   render() {
     return (
-      <div>
+      <div {...this.props}>
         {this.state.currentTime}
       </div>
     )

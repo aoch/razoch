@@ -14,7 +14,7 @@ export default class InputBox extends Component {
       <div>
         <h1>{greeting} {value}</h1>
         <input type="text" onChange={this.updateText} />
-        <Clock style={{borderColor: "red", borderWidth: "1", borderStyle: "solid"}} />
+        <Clock style={{width: "150px", borderColor: "red", borderWidth: "1", borderStyle: "solid", boxSizing: "border-box" }} />
       </div>
     )
   }
