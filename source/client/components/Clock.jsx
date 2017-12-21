@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+//import DigitalView from './DigitalView';
+//import AnalogView from './AnalogView';
 
-export default class Clock extends Component {
+class Clock extends Component {
 
   constructor(props) {
     super(props)
@@ -17,7 +19,13 @@ export default class Clock extends Component {
     clearInterval(this.interval)
   }
 
-  render = () => <div {...this.props}>{this.state.currentTime}</div>
+  render = () => {
+    return (
+      <div {...this.props} style={{width: "150px", borderColor: "red", borderWidth: "1", borderStyle: "solid", boxSizing: "border-box" }}>
+        {this.state.currentTime}
+      </div>
+    )
+  }
 
   launchClock = () => {
     return setInterval(
@@ -27,3 +35,5 @@ export default class Clock extends Component {
   }
 
 }
+
+export default Clock

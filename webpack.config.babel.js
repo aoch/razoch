@@ -1,11 +1,14 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
+const PROD = JSON.parse(process.env.PROD_ENV || '0');
+
 const config = {
   entry: './source/client/application.jsx',
+  devtool: 'source-map',
   output: {
     path: path.join(__dirname, 'build', 'client'),
-    filename: './bundle.js'
+    filename: PROD ? './bundle.min.js' : './bundle.js'
   },
   module: {
     rules: [
@@ -18,7 +21,12 @@ const config = {
   },
   plugins: [new HtmlWebpackPlugin({
     title: 'Todos',
-    template: 'source/client/index.html'
+    template: 'source/client/index.html',
+    minify: { 
+      minifyJS: false,
+      collapseWhitespace: true,
+      preserveLineBreaks: true
+    }
   })],
   resolve: {
     extensions: ['.js', '.jsx'],
