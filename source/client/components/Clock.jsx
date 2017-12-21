@@ -4,24 +4,25 @@ export default class Clock extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      currentTime: (new Date()).toLocaleString()
-    }
-    this.launchClock()
   }
 
-  render() {
-    return (
-      <div {...this.props}>
-        {this.state.currentTime}
-      </div>
-    )
+  componentWillMount() {
+    this.state = {
+      currentTime: new Date().toLocaleString()
+    }
+    this.interval = this.launchClock()
   }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
+  render = () => <div {...this.props}>{this.state.currentTime}</div>
 
   launchClock = () => {
-    setInterval(
-      (currentTime) => {
-        this.setState({ currentTime: (new Date()).toLocaleString() })
+    return setInterval(
+      () => {
+        this.setState({ currentTime: new Date().toLocaleString() })
       }, 1000)
   }
 
