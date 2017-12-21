@@ -17,7 +17,7 @@ const { IP = 'https://localhost', PORT = 3000 } = process.env
 
 const callback = (error) => {
   const message = error || `Todo Server listening on ${IP}:${PORT}`
-  console.log(message)
+  console.log(message)  // eslint-disable-line
 }
 
 // Define credentials needed to support using HTTPS on this server
