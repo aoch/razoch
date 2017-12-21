@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import Clock from './Clock';
 
-class InputBox extends Component {
+export default class InputBox extends Component {
   state = {
     value: ''
   }
@@ -13,6 +14,8 @@ class InputBox extends Component {
       <div>
         <h1>{greeting} {value}</h1>
         <input type="text" onChange={this.updateText} />
+        <p />
+        <Clock style={{width: "150px", borderColor: "red", borderWidth: "1", borderStyle: "solid", boxSizing: "border-box" }} />
       </div>
     )
   }
@@ -22,5 +25,3 @@ class InputBox extends Component {
     this.setState({ value })
   }
 }
-
-export default InputBox
