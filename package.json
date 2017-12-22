@@ -8,7 +8,7 @@
     "build": "webpack -p --display-error-details && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
     "start": "node build/server/server",
     "shebang": "npm run clean && npm run build && npm run start",
-    "precommit": "eslint source/**/*.js source/**/*.jsx"
+    "precommit": "eslint eslint --ext .jsx --ext .js source"
   },
   "engines": {
     "node": "8.9.1",

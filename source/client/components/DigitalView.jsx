@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
+// import React, { Component } from 'react'
 
-const DigitalView = (props) => <div {...this.props}>{props.time}</div>
+// const DigitalView = (props) => <div {...this.props}>{props.time}</div>
 
-export default DigitalView
+// export default DigitalView
