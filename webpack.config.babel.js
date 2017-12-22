@@ -2,12 +2,15 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
+const PROD = JSON.parse(process.env.PROD_ENV || '0');
+
 const config = {
   devtool: 'source-map',
   entry: './source/client/application.jsx',
+  devtool: 'source-map',
   output: {
     path: path.join(__dirname, 'build', 'client'),
-    filename: './bundle.js'
+    filename: PROD ? './bundle.min.js' : './bundle.js'
   },
   module: {
     rules: [
