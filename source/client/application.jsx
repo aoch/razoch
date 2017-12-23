@@ -1,15 +1,16 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import { devToolsEnhancer } from 'redux-devtools-extension'
+import { createStore, compose, applyMiddleware } from 'redux'
+import logger from 'redux-logger'
 
 import reducer from './reducer'
 import Input from './input/input.container'
 import Clock from './clock/clock.container'
 
 const state = { time: '', value: '' }
-const middleware = devToolsEnhancer()
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose // eslint-disable-line
+const middleware = composeEnhancers(applyMiddleware(logger))
 const store = createStore(reducer, state, middleware)
 const domNode = document.querySelector('main')
 const element = (
