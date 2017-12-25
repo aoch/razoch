@@ -9,7 +9,4 @@ const inputReducer = (state = '', action) => {
   }
 }
 
-export {
-  UPDATE_INPUT,
-  inputReducer
-}
+export default inputReducer

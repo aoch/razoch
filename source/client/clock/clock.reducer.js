@@ -9,7 +9,4 @@ const clockReducer = (state = '', action) => {
   }
 }
 
-export {
-  UPDATE_CLOCK,
-  clockReducer
-}
+export default clockReducer
