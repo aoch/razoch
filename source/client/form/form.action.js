@@ -1,4 +1,4 @@
-const UPDATE_TEXT = 'update_text'
+const UPDATE_TEXT = 'UPDATE_TEXT'
 
 const updateText = (text) => {
   const action = {
@@ -11,7 +11,7 @@ const updateText = (text) => {
 const fetchText = (url) => (dispatch) => {
   fetch(url)
     .then((response) => response.json())
-    .then((json) => dispatch(updateText(json.name)))
+    .then((json) => dispatch(updateText(json.name || json.detail)))
     .catch((error) => dispatch(updateText(error.toString())))
 }
 

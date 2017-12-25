@@ -1,4 +1,4 @@
-const UPDATE_CLOCK = 'update_clock'
+const UPDATE_CLOCK = 'UPDATE_CLOCK'
 
 const updateClock = (time) => {
   const action = {
