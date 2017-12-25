@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 class Form extends Component {
   constructor(props) {
@@ -6,10 +6,10 @@ class Form extends Component {
     this.onClick = () => props.getText('https://swapi.co/api/people/1')
   }
   render = () => (
-    <Fragment>
-      <button onClick={this.onClick}>Get Text</button>
+    <div>
+      <button onClick={this.onClick}>Get info via thunk</button>
       <label>{this.props.text}</label>
-    </Fragment>
+    </div>
   )
 }
 
