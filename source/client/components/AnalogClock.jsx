@@ -22,7 +22,7 @@ const AnalogClock = (props) => {
     border: '1px solid red',
     width: '40%',
     height: 1,
-    transform: `rotate( ${secondsDegress} deg)`,
+    transform: `rotate(${secondsDegress}deg)`,
     transformOrigin: '0% 0%',
     backgroundColor: 'red'
   }
@@ -35,7 +35,7 @@ const AnalogClock = (props) => {
     border: '1px solid grey',
     width: '40%',
     height: 3,
-    transform: `rotate( ${minutesDegrees} deg)`,
+    transform: `rotate(${minutesDegrees}deg)`,
     transformOrigin: '0% 0%',
     backgroundColor: 'grey'
   }
@@ -48,18 +48,16 @@ const AnalogClock = (props) => {
     border: '1px solid grey',
     width: '20%',
     height: 7,
-    transform: `rotate( ${hoursDegrees} deg)`,
+    transform: `rotate(${hoursDegrees}deg)`,
     transformOrigin: '0% 0%',
     backgroundColor: 'grey'
   }
 
   return (
-    <div>
-      <div style={dialStyle}>
-        <div style={secondHandStyle} />
-        <div style={minuteHandStyle} />
-        <div style={hourHandStyle} />
-      </div>
+    <div className="analog-clock" style={dialStyle}>
+      <div className="second-hand" style={secondHandStyle} />
+      <div className="minute-hand" style={minuteHandStyle} />
+      <div className="hour-hand" style={hourHandStyle} />
     </div>
   )
 }
