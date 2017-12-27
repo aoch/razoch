@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AnalogView = (props) => {
-  const dateTime = new Date(props.time)
+  const dateTime = props.time ? new Date(props.time) : new Date()
 
   const dialStyle = {
     position: 'relative',
