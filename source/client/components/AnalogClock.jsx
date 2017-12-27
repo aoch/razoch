@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AnalogView = (props) => {
+const AnalogClock = (props) => {
   const dateTime = props.time ? new Date(props.time) : new Date()
 
   const dialStyle = {
@@ -14,7 +14,7 @@ const AnalogView = (props) => {
     borderColor: 'black'
   }
 
-  const secondsDegress = (((dateTime.getSeconds() / 60) * 360) - 90).toString()
+  const secondsDegress = ((dateTime.getSeconds() / 60) * 360) - 90
   const secondHandStyle = {
     position: 'relative',
     top: 100,
@@ -27,7 +27,7 @@ const AnalogView = (props) => {
     backgroundColor: 'red'
   }
 
-  const minutesDegrees = (((dateTime.getMinutes() / 60) * 360) - 90).toString()
+  const minutesDegrees = ((dateTime.getMinutes() / 60) * 360) - 90
   const minuteHandStyle = {
     position: 'relative',
     top: 100,
@@ -40,7 +40,7 @@ const AnalogView = (props) => {
     backgroundColor: 'grey'
   }
 
-  const hoursDegrees = (((dateTime.getHours() / 12) * 360) - 90).toString()
+  const hoursDegrees = ((dateTime.getHours() / 12) * 360) - 90
   const hourHandStyle = {
     position: 'relative',
     top: 92,
@@ -64,4 +64,4 @@ const AnalogView = (props) => {
   )
 }
 
-export default AnalogView
+export default AnalogClock
