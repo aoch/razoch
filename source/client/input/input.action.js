@@ -1,4 +1,4 @@
-const UPDATE_INPUT = 'update_input'
+const UPDATE_INPUT = 'UPDATE_INPUT'
 
 const updateInput = (value) => {
   const action = {
