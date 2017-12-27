@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "clean": "rm -rf build node_modules && npm install",
-    "build": "webpack -p --display-error-details --config webpack/webpack.config.babel.js && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
+    "build": "webpack --display-error-details --config webpack/webpack.config.babel.js && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
     "start": "node build/server/server",
     "shebang": "npm run clean && npm run build && npm run start",
     "precommit": "eslint eslint --ext .jsx --ext .js source webpack"

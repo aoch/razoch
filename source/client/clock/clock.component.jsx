@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './clock.scss'
+import DigitalClock from '../components/DigitalClock'
+import AnalogClock from '../components/AnalogClock'
 
 class Clock extends Component {
   constructor(props) {
@@ -9,15 +11,19 @@ class Clock extends Component {
 
   componentDidMount = () => {
     this.interval = setInterval(() => {
-      this.props.updateClock(new Date().toLocaleString())
+      this.props.updateClock(new Date().getTime())
     }, 1000)
   }
 
   componentWillUnmount = () =>
     clearInterval(this.interval)
 
-  render = () =>
-    <div className={'clock'}>{this.props.time}</div>
+  render = () => (
+      <Fragment >
+        <DigitalClock className={'digital-clock'} time={this.props.time} />
+        <AnalogClock className={'analog-clock'} time={this.props.time} />
+      </Fragment>
+  )
 }
 
 export default Clock
