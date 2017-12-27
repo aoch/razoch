@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import './clock.scss'
-import DigitalClock from '../components/DigitalClock'
-import AnalogClock from '../components/AnalogClock'
+import DigitalClock from './digital.component'
+import AnalogClock from './analog.component'
 
 class Clock extends Component {
   constructor(props) {
