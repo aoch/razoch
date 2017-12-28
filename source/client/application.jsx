@@ -20,7 +20,7 @@ const domNode = document.querySelector('main')
 const element = (
   <Provider store={store} >
     <Fragment>
-      <Clock />
+      <Clock timezone={3} />
       <Input />
       <Form />
       <Panel />

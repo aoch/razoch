@@ -5,9 +5,11 @@
   "main": "server.js",
   "scripts": {
     "clean": "rm -rf build node_modules && npm install",
-    "build": "webpack --display-error-details --config webpack/webpack.config.babel.js && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
+    "build:dev": "webpack --display-error-details --config webpack/webpack.dev.babel.js && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
+    "build:prod": "webpack --display-error-details --config webpack/webpack.prod.babel.js && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
     "start": "node build/server/server",
-    "shebang": "npm run clean && npm run build && npm run start",
+    "all:dev": "npm run clean && npm run build:dev && npm run start",
+    "all:prod": "npm run clean && npm run build:prod && npm run start",
     "precommit": "eslint eslint --ext .jsx --ext .js source webpack"
   },
   "engines": {
@@ -72,5 +74,8 @@
     "sass-loader": "6.0.6",
     "spdy": "3.4.7",
     "webpack": "3.10.0"
+  },
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^1.1.5"
   }
 }
