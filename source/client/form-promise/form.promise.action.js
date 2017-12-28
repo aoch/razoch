@@ -1,8 +1,8 @@
-const GET_DATA = 'GET_DATA'
+const GET_DATA_VIA_PROMISE = 'GET_DATA_VIA_PROMISE'
 
 const getData = (url) => {
   const action = {
-    type: GET_DATA,
+    type: GET_DATA_VIA_PROMISE,
     payload: fetch(url)
       .then((response) => response.json())
       .then(({ name, detail }) => name || detail)
@@ -12,6 +12,6 @@ const getData = (url) => {
 }
 
 export {
-  GET_DATA,
+  GET_DATA_VIA_PROMISE,
   getData
 }

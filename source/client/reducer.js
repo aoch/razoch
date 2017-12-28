@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux'
 
 import clockReducer from './clock/clock.reducer'
-import formReducer from './form/form.reducer'
 import inputReducer from './input/input.reducer'
-import panelReducer from './panel/panel.reducer'
+
+import formThunkReducer from './form-thunk/form.thunk.reducer'
+import formPromiseReducer from './form-promise/form.promise.reducer'
 
 const reducer = combineReducers({
   time: clockReducer,
-  text: formReducer,
   value: inputReducer,
-  data: panelReducer
+  thunkData: formThunkReducer,
+  promiseData: formPromiseReducer
 })
 
 export default reducer
