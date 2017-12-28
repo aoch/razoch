@@ -10,8 +10,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const getText = (url) => dispatch(fetchText(url))
-  const props = { getText }
+  const props = {
+    getText: (url) => dispatch(fetchText(url))
+  }
   return props
 }
 
