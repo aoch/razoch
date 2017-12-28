@@ -8,7 +8,7 @@ const PROD = JSON.parse(process.env.PROD_ENV || '0')
 
 const config = {
   devtool: 'source-map',
-  entry: './source/client/application.jsx',
+  entry: './source/client/application/application.jsx',
   output: {
     path: path.join(__dirname, '..', 'build', 'client'),
     filename: PROD ? './bundle.min.js' : './bundle.js'
@@ -35,7 +35,7 @@ const config = {
     new ExtractTextPlugin('./bundle.css'),
     new HtmlWebpackPlugin({
       title: 'Todos',
-      template: './source/client/index.html'
+      template: './source/client/application/index.html'
     })
   ],
   resolve: {

@@ -8,11 +8,11 @@ import { createEpicMiddleware } from 'redux-observable'
 
 import rootEpic from './rootEpic'
 import rootReducer from './rootReducer'
-import Clock from './clock/clock.container'
-import Input from './input/input.container'
-import FormThunk from './form-thunk/form.thunk.container'
-import FormPromise from './form-promise/form.promise.container'
-import FormObservable from './form-observable/form.observable.container'
+import Clock from '../clock/clock.container'
+import Input from '../input/input.container'
+import FormThunk from '../form-thunk/form.thunk.container'
+import FormPromise from '../form-promise/form.promise.container'
+import FormObservable from '../form-observable/form.observable.container'
 
 const initialState = {
   time: '',
