@@ -1,12 +1,12 @@
 
 import { connect } from 'react-redux'
 
-import Form from './form.observable.component'
-import { getData } from './form.observable.action'
+import Form from './form.saga.component'
+import { getData } from './form.saga.action'
 
 const mapStateToProps = (state) => {
-  const { observableData } = state
-  const props = { observableData }
+  const { sagaData } = state
+  const props = { sagaData }
   return props
 }
 
