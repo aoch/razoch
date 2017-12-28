@@ -6,13 +6,15 @@ import inputReducer from '../input/input.reducer'
 import formThunkReducer from '../form-thunk/form.thunk.reducer'
 import formPromiseReducer from '../form-promise/form.promise.reducer'
 import formEpicReducer from '../form-epic/form.epic.reducer'
+import formSagaReducer from '../form-saga/form.saga.reducer'
 
 const rootReducer = combineReducers({
   time: clockReducer,
   value: inputReducer,
   thunkData: formThunkReducer,
   promiseData: formPromiseReducer,
-  epicData: formEpicReducer
+  epicData: formEpicReducer,
+  sagaData: formSagaReducer
 })
 
 export default rootReducer
