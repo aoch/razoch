@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
-import { getData } from './panel.action'
-import Panel from './panel.component'
+
+import Form from './form.thunk.component'
+import { getData } from './form.thunk.action'
 
 const mapStateToProps = (state) => {
-  const { data } = state
-  const props = { data }
+  const { thunkData } = state
+  const props = { thunkData }
   return props
 }
 
@@ -15,4 +16,4 @@ const mapDispatchToProps = (dispatch) => {
   return props
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Panel)
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

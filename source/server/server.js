@@ -13,7 +13,10 @@ httpServer.use(express.static(path.join(__dirname, '..', 'client')))
 httpServer.get('*', (request, response) => response.redirect('/'))
 
 // Pull off environment variable values passed in to this process using object destructuring
-const { IP = 'https://localhost', PORT = 3000 } = process.env
+const {
+  IP = 'https://localhost',
+  PORT = 3000
+} = process.env
 
 const callback = (error) => {
   const message = error || `Todo Server listening on ${IP}:${PORT}`
