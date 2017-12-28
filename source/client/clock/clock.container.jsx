@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Clock from './clock.component'
@@ -10,9 +9,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const actionCreatorSet = { updateClock }
-  const actionCreatorMap = bindActionCreators(actionCreatorSet, dispatch)
-  return actionCreatorMap
+  const props = {
+    updateClock: (time) => dispatch(updateClock(time))
+  }
+  return props
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clock)
