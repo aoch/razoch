@@ -1,6 +1,27 @@
 {
-	"presets": ["react", "env"],
+	"presets": [
+		"react",
+		"env"
+	],
 	"plugins": [
 		"transform-class-properties"
-	]
+	],
+	"env": {
+		"production": {
+			"plugins": [
+				[
+					"transform-react-remove-prop-types",
+					{
+						"mode": "wrap",
+						"ignoreFilenames": [
+							"node_modules"
+						]
+					}
+				]
+			]
+		},
+		"development": {
+			"plugins": []
+		}
+	}
 }
