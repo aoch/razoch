@@ -7,8 +7,8 @@ class Form extends Component {
   }
   render = () => (
     <div>
-      <button onClick={this.onClick}>Get data via observable</button>
-      <label>{this.props.observableData}</label>
+      <button onClick={this.onClick}>Get data via epic</button>
+      <label>{this.props.epicData}</label>
     </div>
   )
 }

@@ -1,12 +1,12 @@
 
 import { connect } from 'react-redux'
 
-import Form from './form.observable.component'
-import { getData } from './form.observable.action'
+import Form from './form.epic.component'
+import { getData } from './form.epic.action'
 
 const mapStateToProps = (state) => {
-  const { observableData } = state
-  const props = { observableData }
+  const { epicData } = state
+  const props = { epicData }
   return props
 }
 
