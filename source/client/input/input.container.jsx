@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Input from './input.component'
@@ -10,9 +9,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const actionCreatorSet = { updateInput }
-  const actionCreatorMap = bindActionCreators(actionCreatorSet, dispatch)
-  return actionCreatorMap
+  const props = {
+    updateInput: (value) => dispatch(updateInput(value))
+  }
+  return props
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input)
