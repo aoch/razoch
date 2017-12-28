@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 class Input extends Component {
   render = () => {
-    const { value } = this.props
+    const { value, label } = this.props
     return (
       <div>
         <input type="text" value={value} onChange={this.onChange}/>
-        <label>{value}</label>
+        <label>{label}</label>
       </div>
     )
   }
@@ -16,5 +16,7 @@ class Input extends Component {
     this.props.updateInput(value)
   }
 }
+
+Input.defaultProps = { label: 'Input text' }
 
 export default Input
