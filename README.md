@@ -1,6 +1,6 @@
 ## How To Run Application
 ```
-$ npm run shebang
+$ npm run all:dev
 ```
 
 ## Special Notes
