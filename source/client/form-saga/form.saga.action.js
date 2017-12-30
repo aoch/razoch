@@ -1,19 +1,44 @@
-const GET_DATA_VIA_SAGA = 'GET_DATA_VIA_SAGA'
-const HAS_DATA_VIA_SAGA = 'HAS_DATA_VIA_SAGA'
+const FETCH_SAGA_DATA_REQUEST = 'FETCH_SAGA_DATA_REQUEST'
+const FETCH_SAGA_DATA_SUCCESS = 'FETCH_SAGA_DATA_SUCCESS'
+const FETCH_SAGA_DATA_FAILURE = 'FETCH_SAGA_DATA_FAILURE'
 
-const getData = (url) => ({
-  type: GET_DATA_VIA_SAGA,
-  payload: url
-})
+const fetchSagaDataRequest = (data) => {
+  const action = {
+    type: FETCH_SAGA_DATA_REQUEST,
+    payload: data
+  }
+  return action
+}
 
-const hasData = (data) => ({
-  type: HAS_DATA_VIA_SAGA,
-  payload: data
-})
+const fetchSagaDataSuccess = (data) => {
+  const action = {
+    type: FETCH_SAGA_DATA_SUCCESS,
+    payload: data
+  }
+  return action
+}
+
+const fetchSagaDataFailure = (error) => {
+  const action = {
+    type: FETCH_SAGA_DATA_FAILURE,
+    payload: error
+  }
+  return action
+}
+
+const actionTypes = {
+  FETCH_SAGA_DATA_REQUEST,
+  FETCH_SAGA_DATA_SUCCESS,
+  FETCH_SAGA_DATA_FAILURE
+}
+
+const actionCreators = {
+  fetchSagaDataRequest,
+  fetchSagaDataSuccess,
+  fetchSagaDataFailure
+}
 
 export {
-  GET_DATA_VIA_SAGA,
-  HAS_DATA_VIA_SAGA,
-  getData,
-  hasData
+  actionTypes,
+  actionCreators
 }
