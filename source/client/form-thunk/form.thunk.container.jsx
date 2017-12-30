@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import Form from './form.thunk.component'
-import { getData } from './form.thunk.action'
+import { actionCreators } from './form.thunk.action'
 
 const mapStateToProps = (state) => {
   const { thunkData } = state
@@ -10,8 +10,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+  const { fetchThunkDataRequest } = actionCreators
   const props = {
-    getData: (url) => dispatch(getData(url))
+    getData: (url) => dispatch(fetchThunkDataRequest(url))
   }
   return props
 }
