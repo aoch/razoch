@@ -1,16 +1,24 @@
 import { Observable } from 'rxjs'
 
 import {
-  GET_DATA_VIA_EPIC,
-  hasData
+  actionTypes,
+  actionCreators
 } from './form.epic.action'
 
+const {
+  FETCH_EPIC_DATA_REQUEST
+} = actionTypes
+
+const {
+  fetchEpicDataSuccess
+} = actionCreators
+
 function getDataEpic(action$) {
-  return action$.ofType(GET_DATA_VIA_EPIC)
+  return action$.ofType(FETCH_EPIC_DATA_REQUEST)
     .switchMap((action) =>
       Observable.ajax
         .getJSON(action.payload)
-        .map((data) => hasData(data.name)))
+        .map(({ name, detail }) => fetchEpicDataSuccess(name || detail)))
 }
 
 export default getDataEpic

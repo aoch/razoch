@@ -1,11 +1,22 @@
-import { GET_DATA_VIA_EPIC, HAS_DATA_VIA_EPIC } from './form.epic.action'
+import {
+  actionTypes,
+} from './form.epic.action'
+
+const {
+  FETCH_EPIC_DATA_REQUEST,
+  FETCH_EPIC_DATA_SUCCESS,
+  FETCH_EPIC_DATA_FAILURE
+} = actionTypes
 
 const formReducer = (state = '', action) => {
-  switch (action.type) {
-    case GET_DATA_VIA_EPIC:
+  const { type, payload } = action
+  switch (type) {
+    case FETCH_EPIC_DATA_REQUEST:
       return state
-    case HAS_DATA_VIA_EPIC:
-      return action.payload
+    case FETCH_EPIC_DATA_SUCCESS:
+      return payload
+    case FETCH_EPIC_DATA_FAILURE:
+      return payload
     default:
       return state
   }

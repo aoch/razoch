@@ -1,19 +1,44 @@
-const GET_DATA_VIA_EPIC = 'GET_DATA_VIA_EPIC'
-const HAS_DATA_VIA_EPIC = 'HAS_DATA_VIA_EPIC'
+const FETCH_EPIC_DATA_REQUEST = 'FETCH_EPIC_DATA_REQUEST'
+const FETCH_EPIC_DATA_SUCCESS = 'FETCH_EPIC_DATA_SUCCESS'
+const FETCH_EPIC_DATA_FAILURE = 'FETCH_EPIC_DATA_FAILURE'
 
-const getData = (url) => ({
-  type: GET_DATA_VIA_EPIC,
-  payload: url
-})
+const fetchEpicDataRequest = (url) => {
+  const action = {
+    type: FETCH_EPIC_DATA_REQUEST,
+    payload: url
+  }
+  return action
+}
 
-const hasData = (data) => ({
-  type: HAS_DATA_VIA_EPIC,
-  payload: data
-})
+const fetchEpicDataSuccess = (data) => {
+  const action = {
+    type: FETCH_EPIC_DATA_SUCCESS,
+    payload: data
+  }
+  return action
+}
+
+const fetchEpicDataFailure = (error) => {
+  const action = {
+    type: FETCH_EPIC_DATA_FAILURE,
+    payload: error
+  }
+  return action
+}
+
+const actionTypes = {
+  FETCH_EPIC_DATA_REQUEST,
+  FETCH_EPIC_DATA_SUCCESS,
+  FETCH_EPIC_DATA_FAILURE
+}
+
+const actionCreators = {
+  fetchEpicDataRequest,
+  fetchEpicDataSuccess,
+  fetchEpicDataFailure
+}
 
 export {
-  GET_DATA_VIA_EPIC,
-  HAS_DATA_VIA_EPIC,
-  getData,
-  hasData
+  actionTypes,
+  actionCreators
 }
