@@ -1,6 +1,8 @@
-const FETCH_EPIC_DATA_REQUEST = 'FETCH_EPIC_DATA_REQUEST'
-const FETCH_EPIC_DATA_SUCCESS = 'FETCH_EPIC_DATA_SUCCESS'
-const FETCH_EPIC_DATA_FAILURE = 'FETCH_EPIC_DATA_FAILURE'
+import {
+  FETCH_EPIC_DATA_REQUEST,
+  FETCH_EPIC_DATA_SUCCESS,
+  FETCH_EPIC_DATA_FAILURE
+} from './form.epic.action.types'
 
 const fetchEpicDataRequest = (url) => {
   const action = {
@@ -26,19 +28,8 @@ const fetchEpicDataFailure = (error) => {
   return action
 }
 
-const actionTypes = {
-  FETCH_EPIC_DATA_REQUEST,
-  FETCH_EPIC_DATA_SUCCESS,
-  FETCH_EPIC_DATA_FAILURE
-}
-
-const actionCreators = {
+export {
   fetchEpicDataRequest,
   fetchEpicDataSuccess,
   fetchEpicDataFailure
-}
-
-export {
-  actionTypes,
-  actionCreators
 }

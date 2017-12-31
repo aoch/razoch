@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 
 import Form from './form.epic.component'
-import { actionCreators } from './form.epic.action'
+import { fetchEpicDataRequest } from './form.epic.action.creators'
 
 const mapStateToProps = (state) => {
   const { epicData } = state
@@ -11,7 +11,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const { fetchEpicDataRequest } = actionCreators
   const props = {
     getData: (url) => dispatch(fetchEpicDataRequest(url))
   }

@@ -1,12 +1,8 @@
 import {
-  actionTypes,
-} from './form.epic.action'
-
-const {
   FETCH_EPIC_DATA_REQUEST,
   FETCH_EPIC_DATA_SUCCESS,
   FETCH_EPIC_DATA_FAILURE
-} = actionTypes
+} from './form.epic.action.types'
 
 const formReducer = (state = '', action) => {
   const { type, payload } = action
