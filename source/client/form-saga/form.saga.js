@@ -1,11 +1,12 @@
-import { call, put } from 'redux-saga/effects'
+import {
+  call,
+  put
+} from 'redux-saga/effects'
 
-import { actionCreators } from './form.saga.action'
-
-const {
+import {
   fetchSagaDataSuccess,
   fetchSagaDataFailure
-} = actionCreators
+} from './form.saga.action.creators'
 
 function* getDataSaga(action) {
   try {

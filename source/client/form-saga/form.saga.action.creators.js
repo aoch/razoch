@@ -1,6 +1,8 @@
-const FETCH_SAGA_DATA_REQUEST = 'FETCH_SAGA_DATA_REQUEST'
-const FETCH_SAGA_DATA_SUCCESS = 'FETCH_SAGA_DATA_SUCCESS'
-const FETCH_SAGA_DATA_FAILURE = 'FETCH_SAGA_DATA_FAILURE'
+import {
+  FETCH_SAGA_DATA_REQUEST,
+  FETCH_SAGA_DATA_SUCCESS,
+  FETCH_SAGA_DATA_FAILURE
+} from './form.saga.action.types'
 
 const fetchSagaDataRequest = (data) => {
   const action = {
@@ -26,19 +28,8 @@ const fetchSagaDataFailure = (error) => {
   return action
 }
 
-const actionTypes = {
-  FETCH_SAGA_DATA_REQUEST,
-  FETCH_SAGA_DATA_SUCCESS,
-  FETCH_SAGA_DATA_FAILURE
-}
-
-const actionCreators = {
+export {
   fetchSagaDataRequest,
   fetchSagaDataSuccess,
   fetchSagaDataFailure
-}
-
-export {
-  actionTypes,
-  actionCreators
 }

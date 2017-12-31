@@ -1,9 +1,8 @@
 import { takeLatest } from 'redux-saga/effects'
-import { actionTypes } from '../form-saga/form.saga.action'
+import { FETCH_SAGA_DATA_REQUEST } from '../form-saga/form.saga.action.types'
 import getDataSaga from '../form-saga/form.saga'
 
 function* rootSaga() {
-  const { FETCH_SAGA_DATA_REQUEST } = actionTypes
   yield takeLatest(FETCH_SAGA_DATA_REQUEST, getDataSaga)
 }
 

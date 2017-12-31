@@ -1,10 +1,8 @@
-import { actionTypes } from './form.saga.action'
-
-const {
+import {
   FETCH_SAGA_DATA_REQUEST,
   FETCH_SAGA_DATA_SUCCESS,
   FETCH_SAGA_DATA_FAILURE
-} = actionTypes
+} from './form.saga.action.types'
 
 const formReducer = (state = '', action) => {
   const { type, payload } = action
