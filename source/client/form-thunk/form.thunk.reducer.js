@@ -1,10 +1,8 @@
-import { actionTypes } from './form.thunk.action'
-
-const {
+import {
   FETCH_THUNK_DATA_REQUEST,
   FETCH_THUNK_DATA_SUCCESS,
   FETCH_THUNK_DATA_FAILURE
-} = actionTypes
+} from './form.thunk.action.types'
 
 const formReducer = (state = '', action) => {
   const { type, payload } = action
