@@ -1,10 +1,6 @@
 import { connect } from 'react-redux'
-import { actionCreators } from './form.promise.action'
+import { fetchPromiseDataRequest } from './form.promise.action.creators'
 import Panel from './form.promise.component'
-
-const {
-  fetchPromiseDataRequest
-} = actionCreators
 
 const mapStateToProps = (state) => {
   const { promiseData } = state

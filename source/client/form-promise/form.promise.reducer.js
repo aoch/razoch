@@ -1,10 +1,8 @@
-import { actionTypes } from './form.promise.action'
-
-const {
+import {
   FETCH_PROMISE_DATA_REQUEST,
   FETCH_PROMISE_DATA_SUCCESS,
   FETCH_PROMISE_DATA_FAILURE
-} = actionTypes
+} from './form.promise.action.types'
 
 const formReducer = (state = '', action) => {
   const { type, payload } = action

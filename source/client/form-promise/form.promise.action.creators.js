@@ -1,6 +1,8 @@
-const FETCH_PROMISE_DATA_REQUEST = 'FETCH_PROMISE_DATA_REQUEST'
-const FETCH_PROMISE_DATA_SUCCESS = 'FETCH_PROMISE_DATA_SUCCESS'
-const FETCH_PROMISE_DATA_FAILURE = 'FETCH_PROMISE_DATA_FAILURE'
+import {
+  FETCH_PROMISE_DATA_REQUEST,
+  FETCH_PROMISE_DATA_SUCCESS,
+  FETCH_PROMISE_DATA_FAILURE
+} from './form.promise.action.types'
 
 const fetchPromiseDataSuccess = (data) => {
   const action = {
@@ -29,19 +31,8 @@ const fetchPromiseDataRequest = (url, dispatch) => {
   return action
 }
 
-const actionTypes = {
-  FETCH_PROMISE_DATA_REQUEST,
-  FETCH_PROMISE_DATA_SUCCESS,
-  FETCH_PROMISE_DATA_FAILURE
-}
-
-const actionCreators = {
+export {
   fetchPromiseDataRequest,
   fetchPromiseDataSuccess,
   fetchPromiseDataFailure
-}
-
-export {
-  actionTypes,
-  actionCreators
 }
