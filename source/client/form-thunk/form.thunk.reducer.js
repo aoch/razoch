@@ -4,15 +4,20 @@ import {
   FETCH_THUNK_DATA_FAILURE
 } from './form.thunk.action.types'
 
-const formReducer = (state = '', action) => {
+const initialState = {
+  done: true,
+  data: ''
+}
+
+const formReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case FETCH_THUNK_DATA_REQUEST:
-      return payload
+      return { ...state, done: false, data: payload }
     case FETCH_THUNK_DATA_SUCCESS:
-      return payload
+      return { ...state, done: true, data: payload }
     case FETCH_THUNK_DATA_FAILURE:
-      return payload
+      return { ...state, done: true, data: payload }
     default:
       return state
   }

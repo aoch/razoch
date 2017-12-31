@@ -4,8 +4,8 @@ import Form from './form.thunk.component'
 import { fetchThunkDataRequest } from './form.thunk.action.creators'
 
 const mapStateToProps = (state) => {
-  const { thunkData } = state
-  const props = { thunkData }
+  const { formThunk: { done, data } } = state
+  const props = { done, data }
   return props
 }
 

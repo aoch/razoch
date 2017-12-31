@@ -1,4 +1,5 @@
 import {
+  FETCH_THUNK_DATA_REQUEST,
   FETCH_THUNK_DATA_SUCCESS,
   FETCH_THUNK_DATA_FAILURE
 } from './form.thunk.action.types'
@@ -20,6 +21,11 @@ const fetchThunkDataFailure = (error) => {
 }
 
 const fetchThunkDataRequest = (url) => (dispatch) => {
+  const action = {
+    type: FETCH_THUNK_DATA_REQUEST,
+    payload: ''
+  }
+  dispatch(action)
   fetch(url)
     .then((response) => response.json())
     .then(({ name, detail }) => dispatch(fetchThunkDataSuccess(name || detail)))
