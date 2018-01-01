@@ -4,14 +4,12 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 import path from 'path'
 
-const PROD = JSON.parse(process.env.PROD_ENV || '0')
-
 const config = {
   devtool: 'source-map',
   entry: './source/client/application/application.jsx',
   output: {
     path: path.join(__dirname, '..', 'build', 'client'),
-    filename: PROD ? './bundle.min.js' : './bundle.js'
+    filename: './bundle.js'
   },
   module: {
     rules: [
