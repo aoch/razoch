@@ -1,11 +1,18 @@
-import { GET_DATA_VIA_SAGA, HAS_DATA_VIA_SAGA } from './form.saga.action'
+import {
+  FETCH_SAGA_DATA_REQUEST,
+  FETCH_SAGA_DATA_SUCCESS,
+  FETCH_SAGA_DATA_FAILURE
+} from './form.saga.action.types'
 
 const formReducer = (state = '', action) => {
-  switch (action.type) {
-    case GET_DATA_VIA_SAGA:
+  const { type, payload } = action
+  switch (type) {
+    case FETCH_SAGA_DATA_REQUEST:
       return state
-    case HAS_DATA_VIA_SAGA:
-      return action.payload
+    case FETCH_SAGA_DATA_SUCCESS:
+      return payload
+    case FETCH_SAGA_DATA_FAILURE:
+      return payload
     default:
       return state
   }

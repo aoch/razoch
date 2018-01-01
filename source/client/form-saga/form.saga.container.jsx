@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 
 import Form from './form.saga.component'
-import { getData } from './form.saga.action'
+import { fetchSagaDataRequest } from './form.saga.action.creators'
 
 const mapStateToProps = (state) => {
   const { sagaData } = state
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   const props = {
-    getData: (url) => dispatch(getData(url))
+    getData: (url) => dispatch(fetchSagaDataRequest(url))
   }
   return props
 }
