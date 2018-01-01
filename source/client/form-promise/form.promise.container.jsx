@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getData } from './form.promise.action'
+import { fetchPromiseDataRequest } from './form.promise.action.creators'
 import Panel from './form.promise.component'
 
 const mapStateToProps = (state) => {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   const props = {
-    getData: (url) => dispatch(getData(url))
+    getData: (url) => dispatch(fetchPromiseDataRequest(url, dispatch))
   }
   return props
 }
