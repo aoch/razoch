@@ -2,17 +2,13 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-
 import path from 'path'
 
-const PROD = JSON.parse(process.env.PROD_ENV || '0')
-
 const config = {
-  devtool: 'source-map',
   entry: './source/client/application/application.jsx',
   output: {
     path: path.join(__dirname, '..', 'build', 'client'),
-    filename: PROD ? './bundle.min.js' : './bundle.js'
+    filename: './bundle.min.js'
   },
   module: {
     rules: [
@@ -37,8 +33,7 @@ const config = {
     new HtmlWebpackPlugin({
       title: 'Todos',
       template: './source/client/application/index.html'
-    }),
-    new webpack.optimize.UglifyJsPlugin({})
+    })
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.css', '.scss'],
