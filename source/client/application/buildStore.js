@@ -12,7 +12,7 @@ const buildStore = () => {
   const initialState = {
     time: '',
     value: '',
-    thunkData: '',
+    formThunk: { done: true, data: '' },
     promiseData: '',
     epicData: '',
     sagaData: ''

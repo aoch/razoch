@@ -11,7 +11,7 @@ import formSagaReducer from '../form-saga/form.saga.reducer'
 const rootReducer = combineReducers({
   time: clockReducer,
   value: inputReducer,
-  thunkData: formThunkReducer,
+  formThunk: formThunkReducer,
   promiseData: formPromiseReducer,
   epicData: formEpicReducer,
   sagaData: formSagaReducer

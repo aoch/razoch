@@ -1,17 +1,17 @@
 import { connect } from 'react-redux'
 
 import Form from './form.thunk.component'
-import { getData } from './form.thunk.action'
+import { fetchThunkDataRequest } from './form.thunk.action.creators'
 
 const mapStateToProps = (state) => {
-  const { thunkData } = state
-  const props = { thunkData }
+  const { formThunk: { done, data } } = state
+  const props = { done, data }
   return props
 }
 
 const mapDispatchToProps = (dispatch) => {
   const props = {
-    getData: (url) => dispatch(getData(url))
+    getData: (url) => dispatch(fetchThunkDataRequest(url))
   }
   return props
 }
