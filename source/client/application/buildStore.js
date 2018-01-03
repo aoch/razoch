@@ -15,7 +15,7 @@ const buildStore = () => {
     formThunk: { done: true, data: '' },
     promiseData: '',
     epicData: '',
-    sagaData: ''
+    formSaga: { done: true, data: '' }
   }
   const epicMiddleware = createEpicMiddleware(rootEpic)
   const sagaMiddleware = createSagaMiddleware()

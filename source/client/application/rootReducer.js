@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   formThunk: formThunkReducer,
   promiseData: formPromiseReducer,
   epicData: formEpicReducer,
-  sagaData: formSagaReducer
+  formSaga: formSagaReducer
 })
 
 export default rootReducer

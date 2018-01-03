@@ -5,8 +5,8 @@ import Form from './form.saga.component'
 import { fetchSagaDataRequest } from './form.saga.action.creators'
 
 const mapStateToProps = (state) => {
-  const { sagaData } = state
-  const props = { sagaData }
+  const { formSaga: { done, data } } = state
+  const props = { done, data }
   return props
 }
 
