@@ -1,5 +1,4 @@
 import { createStore, compose, applyMiddleware } from 'redux'
-import promiseMiddleware from 'redux-promise'
 import thunkMiddleware from 'redux-thunk'
 import { createEpicMiddleware } from 'redux-observable'
 import createSagaMiddleware from 'redux-saga'
@@ -13,14 +12,13 @@ const buildStore = () => {
     time: '',
     value: '',
     formThunk: { done: true, data: '' },
-    promiseData: '',
     formEpic: { done: true, data: '' },
     formSaga: { done: true, data: '' }
   }
   const epicMiddleware = createEpicMiddleware(rootEpic)
   const sagaMiddleware = createSagaMiddleware()
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose // eslint-disable-line
-  const middlewareList = [thunkMiddleware, promiseMiddleware, epicMiddleware, sagaMiddleware]
+  const middlewareList = [thunkMiddleware, epicMiddleware, sagaMiddleware]
   const appliedMiddleware = applyMiddleware(...middlewareList)
   const middleware = composeEnhancers(appliedMiddleware)
   const store = createStore(rootReducer, initialState, middleware)
