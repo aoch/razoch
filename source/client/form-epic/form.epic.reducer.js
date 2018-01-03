@@ -4,15 +4,20 @@ import {
   FETCH_EPIC_DATA_FAILURE
 } from './form.epic.action.types'
 
-const formReducer = (state = '', action) => {
+const initialState = {
+  done: true,
+  data: ''
+}
+
+const formReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case FETCH_EPIC_DATA_REQUEST:
-      return state
+      return { ...state, done: false, data: payload }
     case FETCH_EPIC_DATA_SUCCESS:
-      return payload
+      return { ...state, done: true, data: payload }
     case FETCH_EPIC_DATA_FAILURE:
-      return payload
+      return { ...state, done: true, data: payload }
     default:
       return state
   }

@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   value: inputReducer,
   formThunk: formThunkReducer,
   promiseData: formPromiseReducer,
-  epicData: formEpicReducer,
+  formEpic: formEpicReducer,
   formSaga: formSagaReducer
 })
 

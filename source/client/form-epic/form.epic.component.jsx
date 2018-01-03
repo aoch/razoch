@@ -5,12 +5,16 @@ class Form extends Component {
     super(props)
     this.onClick = () => props.getData('https://swapi.co/api/people/1')
   }
-  render = () => (
-    <div>
-      <button onClick={this.onClick}>Get data via epic</button>
-      <label>{this.props.epicData}</label>
-    </div>
-  )
+  render = () => {
+    const { done, data } = this.props
+    const message = done ? data : 'loading...'
+    return (
+      <div>
+        <button onClick={this.onClick}>Get data via epic</button>
+        <label>{message}</label>
+      </div>
+    )
+  }
 }
 
 export default Form
