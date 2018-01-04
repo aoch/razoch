@@ -7,7 +7,6 @@ import buildStore from './buildStore'
 import Clock from '../clock/clock.container'
 import Input from '../input/input.container'
 import FormThunk from '../form-thunk/form.thunk.container'
-import FormPromise from '../form-promise/form.promise.container'
 import FormEpic from '../form-epic/form.epic.container'
 import FormSaga from '../form-saga/form.saga.container'
 
@@ -17,7 +16,6 @@ const element = (
       <Clock />
       <Input />
       <FormThunk />
-      <FormPromise />
       <FormEpic />
       <FormSaga />
     </Fragment>
