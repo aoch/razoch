@@ -4,15 +4,20 @@ import {
   FETCH_SAGA_DATA_FAILURE
 } from './form.saga.action.types'
 
-const formReducer = (state = '', action) => {
+const initialState = {
+  done: true,
+  data: ''
+}
+
+const formReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case FETCH_SAGA_DATA_REQUEST:
-      return state
+      return { ...state, done: false, data: payload }
     case FETCH_SAGA_DATA_SUCCESS:
-      return payload
+      return { ...state, done: true, data: payload }
     case FETCH_SAGA_DATA_FAILURE:
-      return payload
+      return { ...state, done: true, data: payload }
     default:
       return state
   }
