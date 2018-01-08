@@ -5,8 +5,8 @@ import Form from './form.epic.component'
 import { fetchEpicDataRequest } from './form.epic.action.creators'
 
 const mapStateToProps = (state) => {
-  const { formEpic: { done, data } } = state
-  const props = { done, data }
+  const { formEpic: { loading, data } } = state
+  const props = { loading, data }
   return props
 }
 
