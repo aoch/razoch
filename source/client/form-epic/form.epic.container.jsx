@@ -1,4 +1,4 @@
-
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Form from './form.epic.component'
@@ -11,9 +11,15 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const props = {
-    getData: (url) => dispatch(fetchEpicDataRequest(url))
-  }
+  // Approach1
+  // const getData = (url) => dispatch(fetchEpicDataRequest(url))
+  // const props = { getData }
+  // return props
+
+  // Approach2
+  const getData = (url) => fetchEpicDataRequest(url)
+  const methods = { getData }
+  const props = bindActionCreators(methods, dispatch)
   return props
 }
 

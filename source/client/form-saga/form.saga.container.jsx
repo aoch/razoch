@@ -1,4 +1,5 @@
 
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Form from './form.saga.component'
@@ -11,9 +12,15 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const props = {
-    getData: (url) => dispatch(fetchSagaDataRequest(url))
-  }
+  // Approach1
+  // const getData = (url) => dispatch(fetchSagaDataRequest(url))
+  // const props = { getData }
+  // return props
+
+  // Approach2
+  const getData = (url) => fetchSagaDataRequest(url)
+  const methods = { getData }
+  const props = bindActionCreators(methods, dispatch)
   return props
 }
 
