@@ -5,12 +5,13 @@
   "main": "server.js",
   "scripts": {
     "clean": "rm -rf build node_modules && npm install",
-    "build:dev": "webpack --display-error-details --config webpack/webpack.dev.babel.js && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
-    "build:prod": "webpack --display-error-details --config webpack/webpack.prod.babel.js && babel source/server --out-dir build/server --config ./.babelrc && cp server.* build/server",
-    "start": "node build/server/server",
-    "all:dev": "npm run clean && npm run build:dev && npm run start",
-    "all:prod": "npm run clean && npm run build:prod && npm run start",
-    "precommit": "eslint eslint --ext .jsx --ext .js source webpack"
+    "prepush": "eslint eslint --ext .jsx --ext .js source webpack",
+    "build:dev": "webpack --display-error-details --config webpack/webpack.dev.babel.js",
+    "build:prod": "webpack --display-error-details --config webpack/webpack.prod.babel.js",
+    "run:dev": "node build/server/server",
+    "run:prod": "node build/server/server.min",
+    "all:dev": "npm run clean && npm run build:dev && npm run run:dev",
+    "all:prod": "npm run clean && npm run build:prod && npm run run:prod"
   },
   "engines": {
     "node": "8.9.1",
