@@ -1,16 +1,17 @@
 import express from 'express'
 import http2Server from 'spdy'
-import path from 'path'
 import fs from 'fs'
 
 // Tell Express to create a basic HTTP server
 const httpServer = express()
 
-// Tell Express which directory to use to serve files from
-httpServer.use(express.static(path.join(__dirname, '..', 'client')))
+// Tell Express which directory to use to serve static assets from
+const clientFolder = `${process.env.BUILD_FOLDER}/client`
+httpServer.use(express.static(clientFolder))
 
-// Tell Express to redirect all requests back to the default route
-httpServer.get('*', (request, response) => response.redirect('/'))
+// Tell Express to redirect all requests back to the index file
+const indexFile = `${clientFolder}/index.html`
+httpServer.get('*', (request, response) => response.sendFile(indexFile))
 
 // Pull off environment variable values passed in to this process using object destructuring
 const {
