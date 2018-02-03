@@ -46,7 +46,7 @@
       {
         "devDependencies": [
           "packages/*/esnext/**/*.spec.js",
-          "webpack//**/*.babel.js"
+          "webpack/**/*.babel.js"
         ]
       }
     ],
