@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "clean": "npm install && rimraf build",
+    "test": "jest",
     "prepush": "eslint eslint --ext .jsx --ext .js source webpack",
     "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config webpack/webpack.dev.babel.js",
     "build:prod": "cross-env NODE_ENV=production webpack --display-error-details --config webpack/webpack.prod.babel.js",
@@ -72,6 +73,7 @@
     "cross-env": "5.1.3",
     "css-loader": "0.28.7",
     "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
     "eslint": "4.13.1",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-import": "2.8.0",
