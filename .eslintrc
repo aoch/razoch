@@ -45,7 +45,8 @@
       "error",
       {
         "devDependencies": [
-          "packages/*/esnext/**/*.spec.js"
+          "packages/*/esnext/**/*.spec.js",
+          "source/**/*.spec.js"
         ]
       }
     ],
