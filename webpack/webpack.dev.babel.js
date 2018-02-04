@@ -1,15 +1,15 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import { EnvironmentPlugin } from 'webpack'
+import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-
+import fs from 'fs'
 import path from 'path'
 
-const config = {
+const clientConfig = {
   devtool: 'source-map',
   entry: './source/client/application/application.jsx',
   output: {
     path: path.join(__dirname, '..', 'build', 'client'),
-    filename: './bundle.js'
+    filename: './client.js'
   },
   module: {
     rules: [
@@ -25,20 +25,48 @@ const config = {
     ]
   },
   plugins: [
-    new EnvironmentPlugin({
-      NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
-      BABEL_ENV: 'development', // use 'development' unless process.env.BABEL_ENV is defined
-      DEBUG: true
-    }),
-    new ExtractTextPlugin('./bundle.css'),
+    new ExtractTextPlugin('./client.css'),
     new HtmlWebpackPlugin({
       title: 'Todos',
       template: './source/client/application/index.html'
     })
   ],
+  target: 'web',
   resolve: {
     extensions: ['.js', '.jsx', '.css', '.scss'],
   }
 }
 
-export default config
+const nodeModules = fs.readdirSync('node_modules')
+  .filter((filePath) => !filePath.includes('.bin'))
+  .map((filePath) => `commonjs ${filePath}`)
+
+const serverConfig = {
+  entry: './source/server/server.js',
+  output: {
+    path: path.join(__dirname, '..', 'build', 'server'),
+    filename: './server.js'
+  },
+  devtool: 'eval',
+  module: {
+    rules: [
+      {
+        test: /\.(js?)$/,
+        exclude: [/node_modules/, /build/],
+        use: 'babel-loader'
+      }
+    ]
+  },
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      BUILD_FOLDER: path.resolve(__dirname, '..', 'build')
+    }),
+  ],
+  target: 'node',
+  resolve: {
+    extensions: ['.js'],
+  },
+  externals: [nodeModules]
+}
+
+export default [clientConfig, serverConfig]

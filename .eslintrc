@@ -45,7 +45,9 @@
       "error",
       {
         "devDependencies": [
-          "packages/*/esnext/**/*.spec.js"
+          "packages/*/esnext/**/*.spec.js",
+          "webpack/**/*.babel.js",
+          "source/**/*.spec.js"
         ]
       }
     ],

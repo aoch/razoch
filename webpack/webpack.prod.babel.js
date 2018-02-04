@@ -1,14 +1,14 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-
+import fs from 'fs'
 import path from 'path'
 
-const config = {
+const clientConfig = {
   entry: './source/client/application/application.jsx',
   output: {
     path: path.join(__dirname, '..', 'build', 'client'),
-    filename: './bundle.min.js'
+    filename: './client.min.js'
   },
   module: {
     rules: [
@@ -24,20 +24,48 @@ const config = {
     ]
   },
   plugins: [
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production', // use 'development' unless process.env.NODE_ENV is defined
-      BABEL_ENV: 'production', // use 'development' unless process.env.BABEL_ENV is defined
-      DEBUG: false
-    }),
-    new ExtractTextPlugin('./bundle.css'),
+    new ExtractTextPlugin('./client.min.css'),
     new HtmlWebpackPlugin({
       title: 'Todos',
       template: './source/client/application/index.html'
     })
   ],
+  target: 'web',
   resolve: {
     extensions: ['.js', '.jsx', '.css', '.scss'],
   }
 }
 
-export default config
+const nodeModules = fs.readdirSync('node_modules')
+  .filter((filePath) => !filePath.includes('.bin'))
+  .map((filePath) => `commonjs ${filePath}`)
+
+const serverConfig = {
+  entry: './source/server/server.js',
+  output: {
+    path: path.join(__dirname, '..', 'build', 'server'),
+    filename: './server.min.js'
+  },
+  devtool: 'eval',
+  module: {
+    rules: [
+      {
+        test: /\.(js?)$/,
+        exclude: [/node_modules/, /build/],
+        use: 'babel-loader'
+      }
+    ]
+  },
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      BUILD_FOLDER: path.resolve(__dirname, '..', 'build')
+    }),
+  ],
+  target: 'node',
+  resolve: {
+    extensions: ['.js'],
+  },
+  externals: [nodeModules]
+}
+
+export default [clientConfig, serverConfig]
