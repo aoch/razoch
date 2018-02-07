@@ -90,5 +90,15 @@
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6",
     "webpack": "3.10.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "<rootDir>/build/testCoverage/",
+    "collectCoverageFrom": [
+      "source/**/*.{js,jsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/enzyme/setUp.js"
+    ]
   }
 }

@@ -1,10 +1,7 @@
 import React from 'react'
-import { configure, mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import mount from 'enzyme/build/mount'
 
 import Form from './form.saga.component'
-
-configure({ adapter: new Adapter() })
 
 const getComponent = (Type, props = {}, renderer = mount) => {
   const wrapper = renderer(<Type {...props} />)
