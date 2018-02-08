@@ -1,8 +1,8 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import fs from 'fs'
 import path from 'path'
+import webpackNodeExternals from 'webpack-node-externals'
 
 const clientConfig = {
   devtool: 'source-map',
@@ -15,7 +15,7 @@ const clientConfig = {
     rules: [
       {
         test: /\.(jsx?)$/,
-        exclude: [/node_modules/, /build/],
+        exclude: [/node_modules/, /build/, /enzyme/, /webpack/],
         use: 'babel-loader'
       },
       {
@@ -37,10 +37,6 @@ const clientConfig = {
   }
 }
 
-const nodeModules = fs.readdirSync('node_modules')
-  .filter((filePath) => !filePath.includes('.bin'))
-  .map((filePath) => `commonjs ${filePath}`)
-
 const serverConfig = {
   entry: './source/server/server.js',
   output: {
@@ -52,7 +48,7 @@ const serverConfig = {
     rules: [
       {
         test: /\.(js?)$/,
-        exclude: [/node_modules/, /build/],
+        exclude: [/node_modules/, /build/, /enzyme/, /webpack/],
         use: 'babel-loader'
       }
     ]
@@ -66,7 +62,7 @@ const serverConfig = {
   resolve: {
     extensions: ['.js'],
   },
-  externals: [nodeModules]
+  externals: [webpackNodeExternals()]
 }
 
 export default [clientConfig, serverConfig]

@@ -89,7 +89,8 @@
     "node-sass": "4.7.2",
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6",
-    "webpack": "3.10.0"
+    "webpack": "3.10.0",
+    "webpack-node-externals": "1.6.0"
   },
   "jest": {
     "collectCoverage": true,
