@@ -6,7 +6,10 @@ import webpackNodeExternals from 'webpack-node-externals'
 
 const clientConfig = {
   devtool: 'source-map',
-  entry: './source/client/application/application.jsx',
+  entry: [
+    'webpack-hot-middleware/client?reload=true',
+    './source/client/application/index.jsx'
+  ],
   output: {
     path: path.join(__dirname, '..', 'build', 'client'),
     filename: './client.js'
@@ -25,6 +28,8 @@ const clientConfig = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new ExtractTextPlugin('./client.css'),
     new HtmlWebpackPlugin({
       title: 'Todos',

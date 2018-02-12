@@ -1,13 +1,29 @@
 import express from 'express'
 import http2Server from 'spdy'
+import webpack from 'webpack'
 import fs from 'fs'
+import buildDevMiddleware from 'webpack-dev-middleware'
+import buildHotMiddleware from 'webpack-hot-middleware'
+
+import configList from '../../webpack/webpack.dev.babel'
+
+const config = configList[0]
+const compiler = webpack(config)
+const devMiddleware = buildDevMiddleware(compiler, { noInfo: true })
+const hotMiddleware = buildHotMiddleware(compiler)
 
 // Tell Express to create a basic HTTP server
 const httpServer = express()
 
-// Tell Express which directory to use to serve static assets from
+// Tell Express how to serve assets to clients (webpack middleware or file system)
 const clientFolder = `${process.env.BUILD_FOLDER}/client`
-httpServer.use(express.static(clientFolder))
+const inDevelopmentMode = (process.env.NODE_ENV === 'development')
+if (inDevelopmentMode) {
+  httpServer.use(devMiddleware)
+  httpServer.use(hotMiddleware)
+} else {
+  httpServer.use(express.static(clientFolder))
+}
 
 // Tell Express to redirect all requests back to the index file
 const indexFile = `${clientFolder}/index.html`
