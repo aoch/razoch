@@ -9,8 +9,8 @@
     "prepush": "eslint eslint --ext .jsx --ext .js source webpack",
     "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config webpack/webpack.dev.babel.js",
     "build:prod": "cross-env NODE_ENV=production webpack --display-error-details --config webpack/webpack.prod.babel.js",
-    "run:dev": "node build/server/server",
-    "run:prod": "node build/server/server.min",
+    "run:dev": "cross-env NODE_ENV=development node build/server/server",
+    "run:prod": "cross-env NODE_ENV=production node build/server/server.min",
     "all:dev": "npm run clean && npm run build:dev && npm run run:dev",
     "all:prod": "npm run clean && npm run build:prod && npm run run:prod"
   },
@@ -59,7 +59,11 @@
     "redux-saga": "0.16.0",
     "redux-thunk": "2.2.0",
     "rxjs": "5.5.6",
-    "spdy": "3.4.7"
+    "spdy": "3.4.7",
+    "webpack": "3.10.0",
+    "webpack-dev-middleware": "2.0.4",
+    "webpack-hot-middleware": "2.21.0",
+    "webpack-node-externals": "1.6.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
@@ -88,9 +92,7 @@
     "jest": "22.0.4",
     "node-sass": "4.7.2",
     "rimraf": "2.6.2",
-    "sass-loader": "6.0.6",
-    "webpack": "3.10.0",
-    "webpack-node-externals": "1.6.0"
+    "sass-loader": "6.0.6"
   },
   "jest": {
     "collectCoverage": true,

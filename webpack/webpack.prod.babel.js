@@ -5,7 +5,7 @@ import path from 'path'
 import webpackNodeExternals from 'webpack-node-externals'
 
 const clientConfig = {
-  entry: './source/client/application/application.jsx',
+  entry: './source/client/application/index.jsx',
   output: {
     path: path.join(__dirname, '..', 'build', 'client'),
     filename: './client.min.js'
