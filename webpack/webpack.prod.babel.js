@@ -1,7 +1,7 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
+import webpack from 'webpack'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
 const clientConfig = {
@@ -28,6 +28,9 @@ const clientConfig = {
     new HtmlWebpackPlugin({
       title: 'Todos',
       template: './source/client/application/index.html'
+    }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'production'
     })
   ],
   target: 'web',
