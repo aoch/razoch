@@ -1,5 +1,6 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpack from 'webpack'
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import webpackNodeExternals from 'webpack-node-externals'
@@ -28,7 +29,8 @@ const clientConfig = {
     new HtmlWebpackPlugin({
       title: 'Todos',
       template: './source/client/application/index.html'
-    })
+    }),
+    new UglifyJSPlugin()
   ],
   target: 'web',
   resolve: {
