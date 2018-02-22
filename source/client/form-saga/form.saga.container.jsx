@@ -12,12 +12,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  // Approach1
-  // const getData = (url) => dispatch(fetchSagaDataRequest(url))
-  // const props = { getData }
-  // return props
-
-  // Approach2
   const getData = (url) => fetchSagaDataRequest(url)
   const methods = { getData }
   const props = bindActionCreators(methods, dispatch)
