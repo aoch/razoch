@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf node_modules && npm install && rimraf build",
     "test": "jest",
-    "prepush": "eslint eslint --ext .jsx --ext .js source webpack",
+    "prepush": "eslint --ext .js,.jsx source webpack enzyme",
     "build:dev": "webpack --display-error-details --config webpack/webpack.dev.babel.js",
     "build:prod": "webpack --display-error-details --config webpack/webpack.prod.babel.js",
     "run:dev": "cross-env NODE_ENV=development node build/server/server",
