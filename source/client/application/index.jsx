@@ -21,6 +21,7 @@ render(Application)
 
 if (module.hot) {
   module.hot.accept('./application', () => {
-    render(require('./application').default) // eslint-disable-line
+    import('./application')
+      .then((App) => render(App.default))
   })
 }
