@@ -8,10 +8,17 @@ import winston from 'winston'
 
 import configList from '../../webpack/webpack.dev.babel'
 
+const {
+  IP = 'https://localhost',
+  PORT = 3000,
+  BUILD_FOLDER,
+  NODE_ENV
+} = process.env
+
 const httpServer = express()
 
-const clientFolder = `${process.env.BUILD_FOLDER}/client`
-const isProduction = (process.env.NODE_ENV === 'production')
+const clientFolder = `${BUILD_FOLDER}/client`
+const isProduction = (NODE_ENV === 'production')
 if (isProduction) {
   httpServer.use(express.static(clientFolder))
 } else {
@@ -25,12 +32,6 @@ if (isProduction) {
 
 const indexFile = `${clientFolder}/index.html`
 httpServer.get('*', (request, response) => response.sendFile(indexFile))
-
-const {
-  IP = 'https://localhost',
-  PORT = 3000,
-  NODE_ENV
-} = process.env
 
 const callback = (error) => {
   const [level, message] = error
