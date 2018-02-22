@@ -6,10 +6,14 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
 const clientConfig = {
-  entry: './source/client/application/index.jsx',
+  entry: {
+    client: './source/client/application/index.jsx',
+    vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
+  },
   output: {
     path: path.join(__dirname, '..', 'build', 'client'),
-    filename: './client.min.js'
+    filename: '[name].[chunkhash].min.js',
+    pathinfo: true
   },
   module: {
     rules: [
@@ -25,7 +29,8 @@ const clientConfig = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('./client.min.css'),
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
+    new ExtractTextPlugin('./client.[contenthash].min.css'),
     new HtmlWebpackPlugin({
       title: 'Todos',
       template: './source/client/application/index.html'
@@ -42,10 +47,12 @@ const clientConfig = {
 }
 
 const serverConfig = {
-  entry: './source/server/server.js',
+  entry: {
+    server: './source/server/server.js',
+  },
   output: {
     path: path.join(__dirname, '..', 'build', 'server'),
-    filename: './server.min.js'
+    filename: './[name].min.js'
   },
   devtool: 'eval',
   module: {
