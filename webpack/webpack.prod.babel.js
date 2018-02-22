@@ -1,8 +1,8 @@
+import path from 'path'
 import webpack from 'webpack'
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import path from 'path'
 import webpackNodeExternals from 'webpack-node-externals'
 
 const clientConfig = {
@@ -30,7 +30,10 @@ const clientConfig = {
       title: 'Todos',
       template: './source/client/application/index.html'
     }),
-    new UglifyJSPlugin()
+    new UglifyJSPlugin(),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'production'
+    })
   ],
   target: 'web',
   resolve: {

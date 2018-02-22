@@ -7,11 +7,6 @@ import buildHotMiddleware from 'webpack-hot-middleware'
 
 import configList from '../../webpack/webpack.dev.babel'
 
-const config = configList[0]
-const compiler = webpack(config)
-const devMiddleware = buildDevMiddleware(compiler, { noInfo: true })
-const hotMiddleware = buildHotMiddleware(compiler)
-
 // Tell Express to create a basic HTTP server
 const httpServer = express()
 
@@ -19,6 +14,10 @@ const httpServer = express()
 const clientFolder = `${process.env.BUILD_FOLDER}/client`
 const inDevelopmentMode = (process.env.NODE_ENV === 'development')
 if (inDevelopmentMode) {
+  const config = configList[0]
+  const compiler = webpack(config)
+  const devMiddleware = buildDevMiddleware(compiler, { noInfo: true })
+  const hotMiddleware = buildHotMiddleware(compiler)
   httpServer.use(devMiddleware)
   httpServer.use(hotMiddleware)
 } else {
@@ -32,11 +31,12 @@ httpServer.get('*', (request, response) => response.sendFile(indexFile))
 // Pull off environment variable values passed in to this process using object destructuring
 const {
   IP = 'https://localhost',
-  PORT = 3000
+  PORT = 3000,
+  NODE_ENV
 } = process.env
 
 const callback = (error) => {
-  const message = error || `Todo Server listening on ${IP}:${PORT}`
+  const message = error || `Server listening on ${IP}:${PORT} in ${NODE_ENV} mode`
   console.log(message)  // eslint-disable-line
 }
 
