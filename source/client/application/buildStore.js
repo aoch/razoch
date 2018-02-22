@@ -10,10 +10,11 @@ import rootSaga from './rootSaga'
 import rootReducer from './rootReducer'
 
 const buildStore = (isProduction) => {
+  const { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: devCompose } = window
   const epicMiddleware = createEpicMiddleware(rootEpic)
   const sagaMiddleware = createSagaMiddleware()
   const debugMiddleware = (isProduction ? null : createDebugMiddleware())
-  const composeEnhancers = (isProduction ? compose : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) // eslint-disable-line
+  const composeEnhancers = (isProduction ? compose : devCompose)
 
   const middlewareList = [
     debugMiddleware,
