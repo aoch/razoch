@@ -11,8 +11,8 @@
     "build:prod": "webpack --display-error-details --config webpack/webpack.prod.babel.js",
     "run:dev": "cross-env NODE_ENV=development node build/server/server",
     "run:prod": "cross-env NODE_ENV=production node build/server/server.min",
-    "all:dev": "npm run clean && npm run build:dev && npm run run:dev",
-    "all:prod": "npm run clean && npm run build:prod && npm run run:prod"
+    "all:dev": "run-s clean build:dev run:dev",
+    "all:prod": "run-s clean build:prod run:prod"
   },
   "engines": {
     "node": "8.9.1",
@@ -91,6 +91,7 @@
     "husky": "0.14.3",
     "jest": "22.0.4",
     "node-sass": "4.7.2",
+    "npm-run-all": "4.1.2",
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6"
   },
