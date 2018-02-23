@@ -3,6 +3,7 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
+import DashboardPlugin from 'webpack-dashboard/plugin'
 
 const clientConfig = {
   devtool: 'source-map',
@@ -28,6 +29,7 @@ const clientConfig = {
     ]
   },
   plugins: [
+    new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new ExtractTextPlugin('./client.css'),

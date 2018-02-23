@@ -5,6 +5,7 @@ import fs from 'fs'
 import buildDevMiddleware from 'webpack-dev-middleware'
 import buildHotMiddleware from 'webpack-hot-middleware'
 import winston from 'winston'
+import DashboardPlugin from 'webpack-dashboard/plugin'
 
 import configList from '../../webpack/webpack.dev.babel'
 
@@ -17,6 +18,7 @@ if (isProduction) {
 } else {
   const config = configList[0]
   const compiler = webpack(config)
+  compiler.apply(new DashboardPlugin())
   const devMiddleware = buildDevMiddleware(compiler, { noInfo: true })
   const hotMiddleware = buildHotMiddleware(compiler)
   httpServer.use(devMiddleware)

@@ -7,9 +7,9 @@
     "clean": "rimraf node_modules && npm install && rimraf build",
     "test": "jest",
     "prepush": "eslint --ext .js,.jsx source webpack enzyme",
-    "build:dev": "webpack --display-error-details --config webpack/webpack.dev.babel.js",
+    "build:dev": "webpack-dashboard -- webpack --display-error-details --config webpack/webpack.dev.babel.js",
     "build:prod": "webpack --display-error-details --config webpack/webpack.prod.babel.js",
-    "run:dev": "cross-env NODE_ENV=development node build/server/server",
+    "run:dev": "webpack-dashboard -- cross-env NODE_ENV=development node build/server/server",
     "run:prod": "cross-env NODE_ENV=production node build/server/server.min",
     "all:dev": "run-s clean build:dev run:dev",
     "all:prod": "run-s clean build:prod run:prod"
@@ -61,6 +61,7 @@
     "rxjs": "5.5.6",
     "spdy": "3.4.7",
     "webpack": "3.10.0",
+    "webpack-dashboard": "1.1.1",
     "webpack-dev-middleware": "2.0.4",
     "webpack-hot-middleware": "2.21.0",
     "winston": "2.4.0"
@@ -95,8 +96,8 @@
     "npm-run-all": "4.1.2",
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6",
-    "webpack-node-externals": "1.6.0",
-    "uglifyjs-webpack-plugin": "1.2.0"
+    "uglifyjs-webpack-plugin": "1.2.0",
+    "webpack-node-externals": "1.6.0"
   },
   "jest": {
     "collectCoverage": true,
