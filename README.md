@@ -1,6 +1,6 @@
 ## How To Run Application
 ```
-$ npm run all:dev
+$ npm run zboot:dev
 ```
 
 ## Special Notes
