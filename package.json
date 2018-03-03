@@ -115,10 +115,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 4,
-        "functions": 13,
-        "lines": 5,
-        "statements": 5
+        "branches": 0,
+        "functions": 4,
+        "lines": 2,
+        "statements": 1
       }
     },
     "setupFiles": [

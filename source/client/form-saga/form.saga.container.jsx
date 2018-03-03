@@ -7,7 +7,8 @@ import { fetchSagaDataRequest } from './form.saga.action.creators'
 
 const mapStateToProps = (state) => {
   const { formSaga: { done, data } } = state
-  const props = { done, data }
+  const message = (done && data) || 'loading...'
+  const props = { message }
   return props
 }
 

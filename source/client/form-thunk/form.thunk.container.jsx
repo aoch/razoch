@@ -6,7 +6,8 @@ import { fetchThunkDataRequest } from './form.thunk.action.creators'
 
 const mapStateToProps = (state) => {
   const { formThunk: { done, data } } = state
-  const props = { done, data }
+  const message = (done && data) || 'loading...'
+  const props = { message }
   return props
 }
 
