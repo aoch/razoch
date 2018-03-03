@@ -1,7 +1,7 @@
 import React from 'react'
 import mount from 'enzyme/build/mount'
 
-import Form from './form.thunk.component'
+import Form from './form.saga.component'
 
 const getComponent = (Type, props = {}, renderer = mount) => {
   const wrapper = renderer(<Type {...props} />)
@@ -15,20 +15,15 @@ const getComponent = (Type, props = {}, renderer = mount) => {
   return component
 }
 
-describe('the Form (Thunk) component', () => {
+describe('the Form (Saga) component', () => {
   it('should render itself correctly', () => {
-    const props = {
-      done: false,
-      data: '',
-      getData: jest.fn()
-    }
+    const props = { api: jest.fn(), message: 'loading...' }
     const component = getComponent(Form, props)
     component.clickButton()
     expect(component.hasButton()).toBe(true)
-    expect(component.getButtonText()).toBe('Get data via thunk')
+    expect(component.getButtonText()).toBe('Get data via Saga')
     expect(component.hasLabel()).toBe(true)
     expect(component.getLabelText()).toBe('loading...')
-    expect(props.getData).toHaveBeenCalledTimes(1)
-    expect(props.getData).toHaveBeenCalledWith('https://swapi.co/api/people/1')
+    expect(props.api).toHaveBeenCalledTimes(1)
   })
 })
