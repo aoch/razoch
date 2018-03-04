@@ -7,11 +7,11 @@ import webpackNodeExternals from 'webpack-node-externals'
 
 const clientConfig = {
   entry: {
-    client: './source/client/application/index.jsx',
+    client: ['./source/client/application/index.jsx'],
     vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
   },
   output: {
-    path: path.join(__dirname, '..', 'build', 'client'),
+    path: path.resolve(__dirname, '..', 'build', 'client'),
     filename: '[name].[chunkhash].min.js',
     pathinfo: true
   },
@@ -29,13 +29,13 @@ const clientConfig = {
     ]
   },
   plugins: [
+    new UglifyJSPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
     new ExtractTextPlugin('./client.[contenthash].min.css'),
     new HtmlWebpackPlugin({
       title: 'Todos',
       template: './source/client/application/index.html'
     }),
-    new UglifyJSPlugin(),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production'
     })
@@ -48,13 +48,12 @@ const clientConfig = {
 
 const serverConfig = {
   entry: {
-    server: './source/server/server.js',
+    server: ['./source/server/server.js'],
   },
   output: {
-    path: path.join(__dirname, '..', 'build', 'server'),
+    path: path.resolve(__dirname, '..', 'build', 'server'),
     filename: './[name].min.js'
   },
-  devtool: 'eval',
   module: {
     rules: [
       {

@@ -6,13 +6,17 @@ import webpackNodeExternals from 'webpack-node-externals'
 
 const clientConfig = {
   devtool: 'source-map',
-  entry: [
-    'webpack-hot-middleware/client?reload=true',
-    './source/client/application/index.jsx'
-  ],
+  entry: {
+    client: [
+      'webpack-hot-middleware/client?reload=true',
+      './source/client/application/index.jsx'
+    ],
+    vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
+  },
   output: {
-    path: path.join(__dirname, '..', 'build', 'client'),
-    filename: './client.js'
+    path: path.resolve(__dirname, '..', 'build', 'client'),
+    filename: '[name].[hash].js',
+    pathinfo: true
   },
   module: {
     rules: [
@@ -30,7 +34,8 @@ const clientConfig = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new ExtractTextPlugin('./client.css'),
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
+    new ExtractTextPlugin('./client.[contenthash].css'),
     new HtmlWebpackPlugin({
       title: 'Todos',
       template: './source/client/application/index.html'
@@ -46,12 +51,14 @@ const clientConfig = {
 }
 
 const serverConfig = {
-  entry: './source/server/server.js',
-  output: {
-    path: path.join(__dirname, '..', 'build', 'server'),
-    filename: './server.js'
+  entry: {
+    server: ['./source/server/server.js'],
   },
-  devtool: 'eval',
+  output: {
+    path: path.resolve(__dirname, '..', 'build', 'server'),
+    filename: './[name].js'
+  },
+  devtool: 'source-map',
   module: {
     rules: [
       {
