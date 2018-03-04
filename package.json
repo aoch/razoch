@@ -5,13 +5,14 @@
   "main": "build/server/server.min",
   "scripts": {
     "------------------------ LifeCycle Scripts ------------------------": "",
-    "prepush": "run-s lint:scss lint:code test:stat",
+    "prepush": "run-s lint:scss lint:code test:stat test:size",
     "------------------------ Common Scripts ---------------------------": "",
     "clean:all": "rimraf build node_modules && npm install",
     "lint:scss": "stylelint --config configs/.stylelintrc './source/**/*.scss'",
     "lint:code": "eslint --ignore-path configs/.eslintignore --config configs/.eslintrc --ext .js,.jsx source webpack enzyme",
     "test:code": "jest --silent --coverage=false ",
     "test:stat": "jest --silent --coverage=true",
+    "test:size": "bundlesize",
     "------------------------ Development Scripts -----------------------": "",
     "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack.dev.babel.js",
     "start:dev": "cross-env NODE_ENV=development node build/server/server.max",
@@ -77,6 +78,7 @@
     "babel-eslint": "8.2.2",
     "babel-loader": "7.1.3",
     "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-ramda": "1.4.3",
     "babel-plugin-syntax-dynamic-import": "6.18.0",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
@@ -84,6 +86,7 @@
     "babel-preset-env": "1.6.1",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
+    "bundlesize": "0.16.0",
     "cross-env": "5.1.3",
     "css-loader": "0.28.10",
     "enzyme": "3.3.0",
@@ -108,6 +111,20 @@
     "uglifyjs-webpack-plugin": "1.2.2",
     "webpack-node-externals": "1.6.0"
   },
+  "bundlesize": [
+    {
+      "path": "./build/client/client.*.js",
+      "maxSize": "20 kB"
+    },
+    {
+      "path": "./build/client/client.*.css",
+      "maxSize": "1 kB"
+    },
+    {
+      "path": "./build/client/vendor.*.js",
+      "maxSize": "460 kB"
+    },
+  ],
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/build/testCoverage/",
@@ -146,7 +163,8 @@
     "plugins": [
       "transform-class-properties",
       "transform-object-rest-spread",
-      "syntax-dynamic-import"
+      "syntax-dynamic-import",
+      "ramda"
     ],
     "env": {
       "production": {

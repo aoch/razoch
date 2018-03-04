@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createEpicMiddleware } from 'redux-observable'
 import createSagaMiddleware from 'redux-saga'
 import createDebugMiddleware from 'redux-immutable-state-invariant'
-import identity from 'ramda/src/identity'
+import { identity } from 'ramda'
 
 import rootEpic from './rootEpic'
 import rootSaga from './rootSaga'
