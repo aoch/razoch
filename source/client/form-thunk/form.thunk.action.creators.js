@@ -28,7 +28,7 @@ const fetchThunkDataRequest = (url) => (dispatch) => {
   dispatch(action)
   fetch(url)
     .then((response) => response.json())
-    .then(({ name, detail }) => dispatch(fetchThunkDataSuccess(name || detail)))
+    .then((data) => dispatch(fetchThunkDataSuccess(data.name)))
     .catch((error) => dispatch(fetchThunkDataFailure(error.toString())))
 }
 

@@ -5,6 +5,7 @@ import fs from 'fs'
 import buildDevMiddleware from 'webpack-dev-middleware'
 import buildHotMiddleware from 'webpack-hot-middleware'
 import winston from 'winston'
+import fetch from 'isomorphic-fetch'
 
 import configList from '../../configs/webpack/dev.babel'
 
@@ -34,8 +35,25 @@ if (isProduction) {
   httpServer.use(hotMiddleware)
 }
 
+httpServer.get('/api/people/:id', (request, response) => {
+  const { params: { id } } = request
+  const endpoint = `https://swapi.co/api/people/${id}`
+  const onValidate = (data) => {
+    const { status, statusText } = data
+    if (status < 200) throw Error(statusText)
+    if (status > 299) throw Error(statusText)
+    return data.json()
+  }
+  const onSuccess = (json) => response.send(json)
+  const onFailure = (error) => response.status(400).send(error.toString())
+  fetch(endpoint)
+    .then(onValidate)
+    .then(onSuccess)
+    .catch(onFailure)
+})
+
 const indexFile = `${clientFolder}/index.html`
-httpServer.get('*', (request, response) => response.sendFile(indexFile))
+httpServer.get('/*', (request, response) => response.sendFile(indexFile))
 
 const {
   IP = 'https://localhost',

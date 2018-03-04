@@ -55,6 +55,7 @@
   "homepage": "https://github.com/aoch/razoch#readme",
   "dependencies": {
     "express": "4.16.2",
+    "isomorphic-fetch": "2.2.1",
     "prop-types": "15.6.1",
     "ramda": "0.25.0",
     "react": "16.2.0",
@@ -136,7 +137,7 @@
       "global": {
         "branches": 0,
         "functions": 4,
-        "lines": 2,
+        "lines": 1,
         "statements": 1
       }
     },
