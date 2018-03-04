@@ -42,7 +42,7 @@ const clientConfig = {
     new ExtractTextPlugin('./client.[contenthash].min.css'),
     new HtmlWebpackPlugin({
       title: 'A React/Redux Playground',
-      template: './source/client/application/index.html'
+      template: './source/pages/index.html'
     }),
     new webpack.EnvironmentPlugin({ NODE_ENV }),
     new CompressionWebpackPlugin({
