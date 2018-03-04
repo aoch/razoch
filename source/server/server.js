@@ -6,7 +6,7 @@ import buildDevMiddleware from 'webpack-dev-middleware'
 import buildHotMiddleware from 'webpack-hot-middleware'
 import winston from 'winston'
 
-import configList from '../../webpack/webpack.dev.babel'
+import configList from '../../configs/webpack.dev.babel'
 
 const httpServer = express()
 
@@ -40,8 +40,8 @@ const callback = (error) => {
 }
 
 const httpsOptions = {
-  key: fs.readFileSync('./server.key'),
-  cert: fs.readFileSync('./server.crt'),
+  key: fs.readFileSync('./configs/server.key'),
+  cert: fs.readFileSync('./configs/server.crt'),
 }
 
 http2Server
