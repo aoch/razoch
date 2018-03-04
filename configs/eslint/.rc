@@ -46,8 +46,7 @@
       {
         "devDependencies": [
           "configs/**/*.js",
-          "source/**/*.test.js",
-          "enzyme/**/*.js"
+          "source/**/*.test.js"
         ]
       }
     ],

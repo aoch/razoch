@@ -6,12 +6,23 @@ import buildDevMiddleware from 'webpack-dev-middleware'
 import buildHotMiddleware from 'webpack-hot-middleware'
 import winston from 'winston'
 
-import configList from '../../configs/webpack.dev.babel'
-
-const httpServer = express()
+import configList from '../../configs/webpack/dev.babel'
 
 const clientFolder = `${process.env.BUILD_FOLDER}/client`
 const isProduction = (process.env.NODE_ENV === 'production')
+
+const httpServer = express()
+
+if (isProduction) {
+  const gzipMiddleware = (request, response, next) => {
+    request.url += '.gz'
+    response.set('Content-Encoding', 'gzip')
+    next()
+  }
+  httpServer.get('*.html', gzipMiddleware)
+  httpServer.get('*.js', gzipMiddleware)
+}
+
 if (isProduction) {
   httpServer.use(express.static(clientFolder))
 } else {
@@ -40,8 +51,8 @@ const callback = (error) => {
 }
 
 const httpsOptions = {
-  key: fs.readFileSync('./configs/server.key'),
-  cert: fs.readFileSync('./configs/server.crt'),
+  key: fs.readFileSync('./configs/server/.key'),
+  cert: fs.readFileSync('./configs/server/.crt'),
 }
 
 http2Server

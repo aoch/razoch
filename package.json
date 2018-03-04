@@ -5,22 +5,22 @@
   "main": "build/server/server.min",
   "scripts": {
     "------------------------ LifeCycle Scripts ------------------------": "",
-    "prepush": "run-s lint:scss lint:code test:stat test:size",
+    "prepush": "run-s lint:scss lint:code test:stat",
     "------------------------ Common Scripts ---------------------------": "",
     "clean:all": "rimraf build node_modules && npm install",
-    "lint:scss": "stylelint --config configs/.stylelintrc './source/**/*.scss'",
-    "lint:code": "eslint --ignore-path configs/.eslintignore --config configs/.eslintrc --ext .js,.jsx source webpack enzyme",
+    "lint:scss": "stylelint --config configs/stylelint/.rc './source/**/*.scss'",
+    "lint:code": "eslint --ignore-path configs/eslint/.ignore --config configs/eslint/.rc --ext .js,.jsx source webpack",
     "test:code": "jest --silent --coverage=false ",
     "test:stat": "jest --silent --coverage=true",
     "test:size": "bundlesize",
     "------------------------ Development Scripts -----------------------": "",
-    "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack.dev.babel.js",
+    "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack/dev.babel.js",
     "start:dev": "cross-env NODE_ENV=development node build/server/server.max",
     "zboot:dev": "run-s clean:all build:dev start:dev",
     "------------------------ Production Scripts ------------------------": "",
-    "build:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack.prd.babel.js",
+    "build:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack/prd.babel.js",
     "start:prd": "cross-env NODE_ENV=production node build/server/server.min",
-    "zboot:prd": "run-s clean:all build:prd start:prd"
+    "zboot:prd": "run-s clean:all build:prd test:size start:prd"
   },
   "engines": {
     "node": "8.9.4",
@@ -87,6 +87,7 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
     "bundlesize": "0.16.0",
+    "compression-webpack-plugin": "^1.1.10",
     "cross-env": "5.1.3",
     "css-loader": "0.28.10",
     "enzyme": "3.3.0",
@@ -140,7 +141,7 @@
       }
     },
     "setupFiles": [
-      "<rootDir>/enzyme/setUp.js"
+      "<rootDir>/configs/enzyme/setUp.js"
     ]
   },
   "babel": {

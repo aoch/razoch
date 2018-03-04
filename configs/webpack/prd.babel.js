@@ -1,11 +1,12 @@
 import path from 'path'
 import webpack from 'webpack'
+import CompressionWebpackPlugin from 'compression-webpack-plugin'
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
-const rootFolder = path.resolve(__dirname, '..')
+const rootFolder = path.resolve(__dirname, '..', '..')
 const buildFolder = path.join(rootFolder, 'build')
 const clientFolder = path.join(buildFolder, 'client')
 const serverFolder = path.join(buildFolder, 'server')
@@ -26,7 +27,7 @@ const clientConfig = {
     rules: [
       {
         test: /\.(jsx?)$/,
-        exclude: [/node_modules/, /build/, /enzyme/, /configs/],
+        exclude: [/node_modules/, /build/, /configs/],
         use: 'babel-loader'
       },
       {
@@ -43,7 +44,14 @@ const clientConfig = {
       title: 'A React/Redux Playground',
       template: './source/client/application/index.html'
     }),
-    new webpack.EnvironmentPlugin({ NODE_ENV })
+    new webpack.EnvironmentPlugin({ NODE_ENV }),
+    new CompressionWebpackPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 1024,
+      minRatio: 0.8
+    })
   ],
   target: 'web',
   resolve: {
@@ -62,10 +70,14 @@ const serverConfig = {
   module: {
     rules: [
       {
-        test: /\.(js?)$/,
-        exclude: [/node_modules/, /build/, /enzyme/, /configs/],
+        test: /\.(jsx?)$/,
+        exclude: [/node_modules/, /build/, /configs/],
         use: 'babel-loader'
-      }
+      },
+      {
+        loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
+        test: /\.s?css/
+      },
     ]
   },
   plugins: [
@@ -75,7 +87,7 @@ const serverConfig = {
   ],
   target: 'node',
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.jsx', '.css', '.scss'],
   },
   externals: [webpackNodeExternals()]
 }
