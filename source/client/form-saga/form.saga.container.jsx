@@ -7,14 +7,14 @@ import { fetchSagaDataRequest } from './form.saga.action.creators'
 
 const mapStateToProps = (state) => {
   const { formSaga: { done, data } } = state
-  const message = (done && data) || 'loading...'
+  const message = done ? data : 'loading...'
   const props = { message }
   return props
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const getData = (url) => fetchSagaDataRequest(url)
-  const methods = { getData }
+  const api = () => fetchSagaDataRequest('https://swapi.co/api/people/1')
+  const methods = { api }
   const props = bindActionCreators(methods, dispatch)
   return props
 }
