@@ -2,7 +2,7 @@ import React from 'react'
 
 const Form = ({ api, message }) => (
   <div>
-    <button onClick={api}>Get data via yipipEpic</button>
+    <button onClick={api}>Get data via yipipppEpic</button>
     <label>{message}</label>
   </div>
 )
