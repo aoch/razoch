@@ -6,14 +6,14 @@ import { fetchThunkDataRequest } from './form.thunk.action.creators'
 
 const mapStateToProps = (state) => {
   const { formThunk: { done, data } } = state
-  const message = (done && data) || 'loading...'
+  const message = done ? data : 'loading...'
   const props = { message }
   return props
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const getData = (url) => fetchThunkDataRequest(url)
-  const methods = { getData }
+  const api = () => fetchThunkDataRequest('https://swapi.co/api/people/1')
+  const methods = { api }
   const props = bindActionCreators(methods, dispatch)
   return props
 }
