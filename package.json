@@ -113,16 +113,16 @@
   },
   "bundlesize": [
     {
-      "path": "./build/client/client.*.js",
-      "maxSize": "20 kB"
+      "path": "build/client/client.*.js",
+      "maxSize": "4 kB"
     },
     {
-      "path": "./build/client/client.*.css",
+      "path": "build/client/client.*.css",
       "maxSize": "1 kB"
     },
     {
-      "path": "./build/client/vendor.*.js",
-      "maxSize": "460 kB"
+      "path": "build/client/vendor.*.js",
+      "maxSize": "103 kB"
     }
   ],
   "jest": {
