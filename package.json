@@ -6,18 +6,18 @@
   "scripts": {
     "------------------------ LifeCycle Scripts ------------------------": "",
     "prepush": "run-s lint:scss lint:code test:stat",
-    "------------------------ Common Scripts ------------------------": "",
-    "clean:all": "rimraf node_modules build && npm install",
-    "lint:scss": "stylelint './source/**/*.scss'",
-    "lint:code": "eslint --ext .js,.jsx source webpack enzyme",
+    "------------------------ Common Scripts ---------------------------": "",
+    "clean:all": "rimraf build node_modules && npm install",
+    "lint:scss": "stylelint --config configs/.stylelintrc './source/**/*.scss'",
+    "lint:code": "eslint --ignore-path configs/.eslintignore --config configs/.eslintrc --ext .js,.jsx source webpack enzyme",
     "test:code": "jest --silent --coverage=false ",
     "test:stat": "jest --silent --coverage=true",
-    "------------------------ Development Scripts ------------------------": "",
-    "build:dev": "webpack --display-error-details --config webpack/webpack.dev.babel.js",
-    "start:dev": "cross-env NODE_ENV=development node build/server/server",
+    "------------------------ Development Scripts -----------------------": "",
+    "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack.dev.babel.js",
+    "start:dev": "cross-env NODE_ENV=development node build/server/server.max",
     "zboot:dev": "run-s clean:all build:dev start:dev",
     "------------------------ Production Scripts ------------------------": "",
-    "build:prd": "webpack --display-error-details --config webpack/webpack.prd.babel.js",
+    "build:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack.prd.babel.js",
     "start:prd": "cross-env NODE_ENV=production node build/server/server.min",
     "zboot:prd": "run-s clean:all build:prd start:prd"
   },
@@ -125,5 +125,46 @@
     "setupFiles": [
       "<rootDir>/enzyme/setUp.js"
     ]
+  },
+  "babel": {
+    "presets": [
+      "react",
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "Safari >= 10",
+              "Chrome >= 64",
+              "Firefox >= 58",
+              "Edge >= 13"
+            ]
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-object-rest-spread",
+      "syntax-dynamic-import"
+    ],
+    "env": {
+      "production": {
+        "plugins": [
+          [
+            "transform-react-remove-prop-types",
+            {
+              "mode": "wrap",
+              "ignoreFilenames": [
+                "node_modules"
+              ]
+            }
+          ]
+        ]
+      },
+      "development": {
+        "plugins": []
+      }
+    }
   }
 }

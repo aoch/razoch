@@ -45,7 +45,7 @@
       "error",
       {
         "devDependencies": [
-          "webpack/**/*.babel.js",
+          "configs/**/*.js",
           "source/**/*.test.js",
           "enzyme/**/*.js"
         ]

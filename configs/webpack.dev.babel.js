@@ -1,25 +1,35 @@
 import path from 'path'
 import webpack from 'webpack'
-import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
+const rootFolder = path.resolve(__dirname, '..')
+const buildFolder = path.join(rootFolder, 'build')
+const clientFolder = path.join(buildFolder, 'client')
+const serverFolder = path.join(buildFolder, 'server')
+
+const { env: { NODE_ENV } } = process
+
 const clientConfig = {
+  devtool: 'source-map',
   entry: {
-    client: ['./source/client/application/index.jsx'],
+    client: [
+      'webpack-hot-middleware/client?reload=true',
+      './source/client/application/index.jsx'
+    ],
     vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
   },
   output: {
-    path: path.resolve(__dirname, '..', 'build', 'client'),
-    filename: '[name].[chunkhash].min.js',
+    path: clientFolder,
+    filename: '[name].[hash].max.js',
     pathinfo: true
   },
   module: {
     rules: [
       {
         test: /\.(jsx?)$/,
-        exclude: [/node_modules/, /build/, /enzyme/, /webpack/],
+        exclude: [/node_modules/, /build/, /enzyme/, /configs/],
         use: 'babel-loader'
       },
       {
@@ -29,16 +39,15 @@ const clientConfig = {
     ]
   },
   plugins: [
-    new UglifyJSPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
-    new ExtractTextPlugin('./client.[contenthash].min.css'),
+    new ExtractTextPlugin('./client.[contenthash].max.css'),
     new HtmlWebpackPlugin({
-      title: 'Todos',
+      title: 'A React/Redux Playground',
       template: './source/client/application/index.html'
     }),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production'
-    })
+    new webpack.EnvironmentPlugin({ NODE_ENV })
   ],
   target: 'web',
   resolve: {
@@ -51,22 +60,23 @@ const serverConfig = {
     server: ['./source/server/server.js'],
   },
   output: {
-    path: path.resolve(__dirname, '..', 'build', 'server'),
-    filename: './[name].min.js'
+    path: serverFolder,
+    filename: './[name].max.js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(js?)$/,
-        exclude: [/node_modules/, /build/, /enzyme/, /webpack/],
+        exclude: [/node_modules/, /build/, /enzyme/, /configs/],
         use: 'babel-loader'
       }
     ]
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-      BUILD_FOLDER: path.resolve(__dirname, '..', 'build')
-    })
+      BUILD_FOLDER: buildFolder
+    }),
   ],
   target: 'node',
   resolve: {
