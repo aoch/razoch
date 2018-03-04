@@ -16,7 +16,7 @@ const clientConfig = {
   entry: {
     client: [
       'webpack-hot-middleware/client?reload=true',
-      './source/client/application/index.jsx'
+      './source/client/application/client.jsx'
     ],
     vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
   },
