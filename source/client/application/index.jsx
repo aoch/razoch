@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import Application from './application'
-import buildStore from './buildStore'
+import buildStore from '../../store/buildStore'
 
 const isProduction = (process.env.NODE_ENV === 'production')
 const store = buildStore(isProduction)
