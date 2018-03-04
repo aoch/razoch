@@ -15,7 +15,7 @@ const { env: { NODE_ENV } } = process
 
 const clientConfig = {
   entry: {
-    client: ['./source/client/application/index.jsx'],
+    client: ['./source/client/application/client.jsx'],
     vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
   },
   output: {
