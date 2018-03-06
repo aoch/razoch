@@ -22,7 +22,7 @@ const clientConfig = {
   },
   output: {
     path: clientFolder,
-    filename: '[name].[hash].max.js',
+    filename: '[name].js',
     pathinfo: true
   },
   module: {
@@ -41,8 +41,7 @@ const clientConfig = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
-    new ExtractTextPlugin('./client.[contenthash].max.css'),
+    new ExtractTextPlugin('./client.css'),
     new HtmlWebpackPlugin({
       title: 'A React/Redux Playground',
       template: './source/pages/index.html'
@@ -57,11 +56,11 @@ const clientConfig = {
 
 const serverConfig = {
   entry: {
-    server: ['./source/server/web.server.js'],
+    'web.server': ['./source/server/web.server.js'],
   },
   output: {
     path: serverFolder,
-    filename: './[name].max.js'
+    filename: './[name].js'
   },
   devtool: 'source-map',
   module: {
