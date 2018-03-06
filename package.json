@@ -15,11 +15,11 @@
     "test:size": "bundlesize",
     "------------------------ Development Scripts -----------------------": "",
     "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack/development.babel.js",
-    "start:dev": "cross-env NODE_ENV=development node build/development/server/server.max",
+    "start:dev": "cross-env NODE_ENV=development node build/development/server/web.server",
     "zboot:dev": "run-s clean:all build:dev start:dev",
     "------------------------ Production Scripts ------------------------": "",
     "build:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack/production.babel.js",
-    "start:prd": "cross-env NODE_ENV=production node build/production/server/server.min",
+    "start:prd": "cross-env NODE_ENV=production node build/production/server/web.server",
     "zboot:prd": "run-s clean:all build:prd test:size start:prd"
   },
   "engines": {

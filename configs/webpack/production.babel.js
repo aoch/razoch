@@ -20,7 +20,7 @@ const clientConfig = {
   },
   output: {
     path: clientFolder,
-    filename: '[name].[chunkhash].min.js',
+    filename: '[name].[chunkhash].js',
     pathinfo: true
   },
   module: {
@@ -39,7 +39,7 @@ const clientConfig = {
   plugins: [
     new UglifyJSPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
-    new ExtractTextPlugin('./client.[contenthash].min.css'),
+    new ExtractTextPlugin('./client.[contenthash].css'),
     new HtmlWebpackPlugin({
       title: 'A React/Redux Playground',
       template: './source/pages/index.html'
@@ -61,11 +61,11 @@ const clientConfig = {
 
 const serverConfig = {
   entry: {
-    server: ['./source/server/web.server.js'],
+    'web.server': ['./source/server/web.server.js'],
   },
   output: {
     path: serverFolder,
-    filename: './[name].min.js'
+    filename: './[name].js'
   },
   module: {
     rules: [
