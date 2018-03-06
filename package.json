@@ -54,6 +54,7 @@
   },
   "homepage": "https://github.com/aoch/razoch#readme",
   "dependencies": {
+    "chalk": "2.3.2",
     "express": "4.16.2",
     "prop-types": "15.6.1",
     "ramda": "0.25.0",
