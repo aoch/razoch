@@ -14,12 +14,12 @@
     "test:stat": "jest --silent --coverage=true",
     "test:size": "bundlesize",
     "------------------------ Development Scripts -----------------------": "",
-    "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack/dev.babel.js",
-    "start:dev": "cross-env NODE_ENV=development node build/server/server.max",
+    "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack/development.babel.js",
+    "start:dev": "cross-env NODE_ENV=development node build/development/server/server.max",
     "zboot:dev": "run-s clean:all build:dev start:dev",
     "------------------------ Production Scripts ------------------------": "",
-    "build:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack/prd.babel.js",
-    "start:prd": "cross-env NODE_ENV=production node build/server/server.min",
+    "build:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack/production.babel.js",
+    "start:prd": "cross-env NODE_ENV=production node build/production/server/server.min",
     "zboot:prd": "run-s clean:all build:prd test:size start:prd"
   },
   "engines": {
@@ -136,7 +136,7 @@
       "global": {
         "branches": 0,
         "functions": 4,
-        "lines": 2,
+        "lines": 1,
         "statements": 1
       }
     },
