@@ -4,12 +4,12 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
+const { env: { NODE_ENV } } = process
 const rootFolder = path.resolve(__dirname, '..', '..')
-const buildFolder = path.join(rootFolder, 'build')
+const buildFolder = path.join(rootFolder, 'build', NODE_ENV)
 const clientFolder = path.join(buildFolder, 'client')
 const serverFolder = path.join(buildFolder, 'server')
 
-const { env: { NODE_ENV } } = process
 
 const clientConfig = {
   devtool: 'source-map',
@@ -57,7 +57,7 @@ const clientConfig = {
 
 const serverConfig = {
   entry: {
-    server: ['./source/server/server.js'],
+    server: ['./source/server/web.server.js'],
   },
   output: {
     path: serverFolder,
