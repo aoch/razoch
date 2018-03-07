@@ -9,7 +9,7 @@ const getComponent = (Type, props = {}, renderer = mount) => {
     getButtonText: () => wrapper.find('button').text(),
     clickButton: () => wrapper.find('button').simulate('click'),
     hasLabel: () => wrapper.find('label').length === 1,
-    getLabelText: () => wrapper.find('label').text(),
+    getLabelText: () => wrapper.find('[name="state"]').text(),
   }
   return component
 }
