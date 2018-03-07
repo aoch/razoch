@@ -5,8 +5,10 @@ class Input extends Component {
     const { value, label } = this.props
     return (
       <div>
-        <label>{label}</label>
-        <input type="text" value={value} onChange={this.onChange}/>
+        <label htmlFor="input">
+          <input name="input" type="text" value={value} onChange={this.onChange} />
+          <span name="state">{label}</span>
+        </label>
         <span>{value}</span>
       </div>
     )
