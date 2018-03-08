@@ -1,45 +1,37 @@
-import http2Server from 'spdy'
-import fs from 'fs'
-
 import express from 'express'
+import fs from 'fs'
+import httpServer from 'spdy'
 import proxyMiddleware from 'http-proxy-middleware'
-import gzipMiddleware from './helpers/gzipAsset'
-import { devMiddleware, hotMiddleware } from './helpers/hotReload'
+
 import callback from './helpers/callback'
+import { devMiddleware, hotMiddleware } from './helpers/hotReload'
+import gzipMiddleware from './helpers/gzipAsset'
 
-const {
-  env: {
-    PORT,
-    BUILD_FOLDER,
-    NODE_ENV
-  }
-} = process
+const server = express()
 
-const clientFolder = `${BUILD_FOLDER}/client`
-const isProduction = (NODE_ENV === 'production')
+const { env: { PORT, BUILD_FOLDER, NODE_ENV } } = process
 
-const httpServer = express()
-
-if (isProduction) {
-  httpServer.get('*.html', gzipMiddleware)
-  httpServer.get('*.js', gzipMiddleware)
-  httpServer.use(express.static(clientFolder))
+if (NODE_ENV === 'production') {
+  server.get('*.js', gzipMiddleware)
+  server.use(express.static(`${BUILD_FOLDER}/client`))
 } else {
-  httpServer.use(devMiddleware)
-  httpServer.use(hotMiddleware)
+  server.use(devMiddleware)
+  server.use(hotMiddleware)
 }
 
-const proxyOptions = { target: 'http://localhost:3001' }
-httpServer.use('/api/people/:id', proxyMiddleware(proxyOptions))
+const proxyPath = '/api/people/:id'
+const proxyData = { target: 'http://localhost:3001' }
+server.use(proxyPath, proxyMiddleware(proxyData))
 
-const indexFile = `${clientFolder}/index.html`
-httpServer.get('*', (request, response) => response.sendFile(indexFile))
+const indexPath = '*'
+const indexFile = `${BUILD_FOLDER}/client/index.html`
+const processor = (request, response) => response.sendFile(indexFile)
+server.get(indexPath, processor)
 
-const httpsOptions = {
+const options = {
   key: fs.readFileSync('./configs/server/.key'),
   cert: fs.readFileSync('./configs/server/.crt'),
 }
-
-http2Server
-  .createServer(httpsOptions, httpServer)
+httpServer
+  .createServer(options, server)
   .listen(PORT, callback(process, 'http'))

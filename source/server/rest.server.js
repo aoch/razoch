@@ -4,20 +4,21 @@ import callback from './helpers/callback'
 
 const restServer = express()
 
-restServer.get('/api/people/:id', (request, response) => {
+const restUrlPath = '/api/people/:id'
+const restHandler = (request, response) => {
   const { params: { id } } = request
   const url = `https://swapi.co/api/people/${id}`
   fetch(url)
     .then((data) => data.json())
     .then((json) => response.json(json))
     .catch((error) => response.error(error).end())
-})
+}
+restServer.get(restUrlPath, restHandler)
 
-restServer.get('*', (request, response) => {
-  response.sendStatus(400).end()
-})
+const rootUrlPath = '*'
+const rootHandler = (request, response) => response.sendStatus(400).end()
+restServer.get(rootUrlPath, rootHandler)
 
 const { env: { PORT } } = process
-
 restServer
   .listen(PORT, callback(process, 'rest'))
