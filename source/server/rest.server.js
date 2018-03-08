@@ -1,3 +1,4 @@
+import apicache from 'apicache'
 import express from 'express'
 import fetch from 'isomorphic-fetch'
 import callback from './helpers/callback'
@@ -13,7 +14,8 @@ const restHandler = (request, response) => {
     .then((json) => response.json(json))
     .catch((error) => response.error(error).end())
 }
-restServer.get(restUrlPath, restHandler)
+const cache = apicache.middleware
+restServer.get(restUrlPath, cache('24 hours'), restHandler)
 
 const rootUrlPath = '*'
 const rootHandler = (request, response) => response.sendStatus(400).end()
