@@ -1,7 +1,6 @@
 import express from 'express'
 import fetch from 'isomorphic-fetch'
-import winston from 'winston'
-import chalk from 'chalk'
+import callback from './helpers/callback'
 
 const restServer = express()
 
@@ -18,22 +17,7 @@ restServer.get('*', (request, response) => {
   response.sendStatus(400).end()
 })
 
-const {
-  IP = 'http://localhost',
-  PORT = 3001,
-  NODE_ENV
-} = process.env
-
-const callback = (error) => {
-  const [level, message, decorate] = error
-    ? ['error', error.toString(), chalk.redBright]
-    : ['info', `[${NODE_ENV}] rest server running on ${IP}:${PORT}`, chalk.yellowBright]
-  const divider = '-'.repeat(120)
-
-  winston.log(level, decorate(divider))
-  winston.log(level, decorate(message))
-  winston.log(level, decorate(divider))
-}
+const { env: { PORT } } = process
 
 restServer
-  .listen(PORT, callback)
+  .listen(PORT, callback(process, 'rest'))

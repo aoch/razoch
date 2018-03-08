@@ -15,11 +15,15 @@
     "test:size": "bundlesize",
     "------------------------ Development Scripts -----------------------": "",
     "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack/development.babel.js",
-    "start:dev": "cross-env NODE_ENV=development node build/development/server/web.server",
+    "start:http:server:dev": "cross-env NODE_ENV=development IP=https://localhost PORT=3000 node build/development/server/http.server",
+    "start:rest:server:dev": "cross-env NODE_ENV=development IP=http://localhost PORT=3001 babel-node source/server/rest.server",
+    "start:dev": "run-p start:http:server:dev start:rest:server:dev",
     "zboot:dev": "run-s clean:all build:dev start:dev",
     "------------------------ Production Scripts ------------------------": "",
     "build:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack/production.babel.js",
-    "start:prd": "cross-env NODE_ENV=production node build/production/server/web.server",
+    "start:http:server:prd": "cross-env NODE_ENV=production IP=https://localhost PORT=3000 node build/production/server/http.server",
+    "start:rest:server:prd": "cross-env NODE_ENV=production IP=http://localhost PORT=3001 babel-node source/server/rest.server",
+    "start:prd": "run-p start:http:server:prd start:rest:server:prd",
     "zboot:prd": "run-s clean:all build:prd test:size start:prd"
   },
   "engines": {
