@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const api = () => fetchThunkDataRequest('https://swapi.co/api/people/1')
+  const api = () => fetchThunkDataRequest('/api/people/1')
   const methods = { api }
   const props = bindActionCreators(methods, dispatch)
   return props
