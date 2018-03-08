@@ -1,0 +1,2 @@
+(1) Convert code to use ServerSideRendering
+(2) Deploy application to a cloud-hosted service e.g. Zeit
