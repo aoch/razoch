@@ -1,5 +1,9 @@
 export default (request, response, next) => {
-  request.url += '.gz'
-  response.set('Content-Encoding', 'gzip')
+  const encoding =
+    request.headers['accept-encoding'] || ''
+  if (encoding.toLowerCase().includes('gzip')) {
+    request.url += '.gz'
+    response.set('Content-Encoding', 'gzip')
+  }
   next()
 }
