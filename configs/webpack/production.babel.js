@@ -61,7 +61,7 @@ const clientConfig = {
 
 const serverConfig = {
   entry: {
-    'web.server': ['./source/server/web.server.js'],
+    'http.server': ['./source/server/http.server.js'],
   },
   output: {
     path: serverFolder,
