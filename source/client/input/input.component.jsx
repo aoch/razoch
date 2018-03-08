@@ -6,8 +6,8 @@ class Input extends Component {
     return (
       <div>
         <label htmlFor="input">
-          <input name="input" type="text" value={value} onChange={this.onChange} />
           <span name="state">{label}</span>
+          <input name="input" type="text" value={value} onChange={this.onChange} />
         </label>
         <span>{value}</span>
       </div>

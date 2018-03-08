@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const api = () => fetchSagaDataRequest('https://swapi.co/api/people/1')
+  const api = () => fetchSagaDataRequest('/api/people/1')
   const methods = { api }
   const props = bindActionCreators(methods, dispatch)
   return props
