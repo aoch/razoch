@@ -6,6 +6,9 @@ import callback from './helpers/callback'
 
 const restServer = express()
 
+const cache = apicache.middleware
+restServer.use(cache('24 hours'))
+
 const restUrlPath = '/api/people/:id'
 const restHandler = (request, response) => {
   const { params: { id } } = request
@@ -15,8 +18,7 @@ const restHandler = (request, response) => {
     .then((json) => response.json(json))
     .catch((error) => response.error(error).end())
 }
-const cache = apicache.middleware
-restServer.get(restUrlPath, cache('24 hours'), restHandler)
+restServer.get(restUrlPath, restHandler)
 
 const rootUrlPath = '*'
 const rootHandler = (request, response) => response.sendStatus(400).end()
