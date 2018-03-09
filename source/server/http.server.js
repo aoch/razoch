@@ -1,3 +1,4 @@
+import apicache from 'apicache'
 import express from 'express'
 import fs from 'fs'
 import httpServer from 'spdy'
@@ -10,6 +11,9 @@ import gzipMiddleware from './middleware/gzipAsset'
 const server = express()
 
 const { env: { PORT, BUILD_FOLDER, NODE_ENV } } = process
+
+const cache = apicache.middleware
+server.use(cache('24 hours'))
 
 if (NODE_ENV === 'production') {
   server.get('*.js', gzipMiddleware)
