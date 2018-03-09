@@ -1,6 +1,7 @@
 import apicache from 'apicache'
 import express from 'express'
 import fetch from 'isomorphic-fetch'
+
 import callback from './helpers/callback'
 
 const restServer = express()
