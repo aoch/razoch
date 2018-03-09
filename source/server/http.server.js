@@ -4,8 +4,8 @@ import httpServer from 'spdy'
 import proxyMiddleware from 'http-proxy-middleware'
 
 import callback from './helpers/callback'
-import { devMiddleware, hotMiddleware } from './helpers/hotReload'
-import gzipMiddleware from './helpers/gzipAsset'
+import { devMiddleware, hotMiddleware } from './middleware/hotReload'
+import gzipMiddleware from './middleware/gzipAsset'
 
 const server = express()
 
