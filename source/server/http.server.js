@@ -11,7 +11,6 @@ import callback from './helpers/callback'
 import { devMiddleware, hotMiddleware } from './middleware/hotReload'
 import gzipMiddleware from './middleware/gzipAsset'
 import buildStore from '../store/buildStore'
-import logger from './helpers/logger'
 
 const server = express()
 
@@ -20,6 +19,26 @@ const isProduction = NODE_ENV === 'production'
 
 const cache = apicache.middleware
 server.use(cache('24 hours'))
+
+const indexPath = '/'
+const processor = (request, response) => {
+  const indexFile = `${BUILD_FOLDER}/client/index.html`
+  const initialState = {}
+  const window = undefined
+  const store = buildStore(isProduction, initialState, window)
+  store.dispatch({ type: 'SET-UP-INITIAL-STATE' })
+  const template = fs.readFileSync(indexFile, 'utf-8').toString()
+  const placeholder = '<=% preloadedApplication %>'
+  const jsx = (
+    <Provider store={store}>
+      <Application />
+    </Provider>
+  )
+  const realContent = renderToString(jsx)
+  const data = template.replace(placeholder, realContent)
+  response.send(data)
+}
+server.get(indexPath, processor)
 
 if (isProduction) {
   server.get('*.js', gzipMiddleware)
@@ -32,31 +51,6 @@ if (isProduction) {
 const proxyPath = '/api/people/:id'
 const proxyData = { target: 'http://localhost:3001' }
 server.use(proxyPath, proxyMiddleware(proxyData))
-
-const indexPath = '*'
-const processor = (request, response) => {
-  const indexFile = `${BUILD_FOLDER}/client/index.html`
-
-  const initialState = {}
-  const window = undefined
-  const store = buildStore(isProduction, initialState, window)
-  store.dispatch({ type: 'FETCH_SAGA_DATA_REQUEST' })
-  store.dispatch({ type: 'FETCH_EPIC_DATA_REQUEST' })
-  store.dispatch({ type: 'FETCH_THUNK_DATA_REQUEST' })
-  const template = fs.readFileSync(indexFile, 'utf-8').toString()
-  const placeholder = '<=% preloadedApplication %>'
-  const jsx = (
-    <Provider store={store}>
-      <Application />
-    </Provider>
-  )
-  const realContent = renderToString(jsx)
-  const data = template.replace(placeholder, realContent)
-  logger.debug(`[xxxx] state is ${JSON.stringify(store.getState(), null, 4)}`)
-  logger.debug(`[xxxx] data is  ${JSON.stringify(data)}`)
-  response.send(data)
-}
-server.get(indexPath, processor)
 
 const options = {
   key: fs.readFileSync('./configs/server/.key'),
