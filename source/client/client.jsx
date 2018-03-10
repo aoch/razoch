@@ -5,7 +5,7 @@ import Application from './application/application'
 import buildStore from '../store/buildStore'
 
 const isProduction = (process.env.NODE_ENV === 'production')
-const store = buildStore(isProduction)
+const store = buildStore(isProduction, {}, window)
 
 const render = (App) => {
   const element = (
