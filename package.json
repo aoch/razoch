@@ -14,15 +14,19 @@
     "test:stat": "jest --silent --coverage=true",
     "test:size": "bundlesize",
     "------------------------ Development Scripts -----------------------": "",
-    "build:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack/development.babel.js",
+    "build:client:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack/development.client.babel.js",
+    "build:server:dev": "cross-env NODE_ENV=development BABEL_ENV=node webpack --display-error-details --config configs/webpack/development.server.babel.js",
     "start:http:server:dev": "cross-env NODE_ENV=development IP=https://localhost PORT=3000 node build/development/server/http.server",
     "start:rest:server:dev": "cross-env NODE_ENV=development IP=http://localhost PORT=3001 babel-node source/server/rest.server",
+    "build:dev": "run-s build:client:dev build:server:dev",
     "start:dev": "run-p start:http:server:dev start:rest:server:dev",
     "zboot:dev": "run-s clean:all build:dev start:dev",
     "------------------------ Production Scripts ------------------------": "",
-    "build:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack/production.babel.js",
+    "build:client:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack/production.client.babel.js",
+    "build:server:prd": "cross-env NODE_ENV=production BABEL_ENV=node webpack --display-error-details --config configs/webpack/production.server.babel.js",
     "start:http:server:prd": "cross-env NODE_ENV=production IP=https://localhost PORT=3000 node build/production/server/http.server",
     "start:rest:server:prd": "cross-env NODE_ENV=production IP=http://localhost PORT=3001 babel-node source/server/rest.server",
+    "build:prd": "run-s build:client:prd build:server:prd",
     "start:prd": "run-p start:http:server:prd start:rest:server:prd",
     "zboot:prd": "run-s clean:all build:prd test:size start:prd"
   },
@@ -92,6 +96,7 @@
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.13",
+    "babel-plugin-transform-require-ignore": "^0.1.1",
     "babel-preset-env": "1.6.1",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
@@ -123,15 +128,15 @@
   },
   "bundlesize": [
     {
-      "path": "build/client/client.*.js",
+      "path": "build/production/client/client.*.js",
       "maxSize": "4 kB"
     },
     {
-      "path": "build/client/client.*.css",
+      "path": "build/production/client/client.*.css",
       "maxSize": "1 kB"
     },
     {
-      "path": "build/client/vendor.*.js",
+      "path": "build/production/client/vendor.*.js",
       "maxSize": "103 kB"
     }
   ],
@@ -177,6 +182,19 @@
       "ramda"
     ],
     "env": {
+      "node": {
+        "plugins": [
+          [
+            "transform-require-ignore",
+            {
+              "extensions": [
+                ".css",
+                ".scss"
+              ]
+            }
+          ]
+        ]
+      },
       "production": {
         "plugins": [
           [

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import Application from './application/application'
 import buildStore from '../store/buildStore'
+import './client.scss'
 
 const isProduction = (process.env.NODE_ENV === 'production')
 const store = buildStore(isProduction, {}, window)
