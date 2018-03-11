@@ -11,6 +11,7 @@ const serverFolder = path.join(buildFolder, 'server')
 const serverConfig = {
   entry: {
     'http.server': ['./source/server/http.server.js'],
+    'rest.server': ['./source/server/rest.server.js'],
   },
   output: {
     path: serverFolder,
