@@ -4,6 +4,7 @@ import CompressionWebpackPlugin from 'compression-webpack-plugin'
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
 const { env: { NODE_ENV } } = process
 const rootFolder = path.resolve(__dirname, '..', '..')
@@ -34,6 +35,7 @@ const clientConfig = {
     ]
   },
   plugins: [
+    new FaviconsWebpackPlugin('./source/pages/favicon.png'),
     new UglifyJSPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
     new ExtractTextPlugin('./client.[contenthash].css'),

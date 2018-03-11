@@ -2,6 +2,7 @@ import path from 'path'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
 const { env: { NODE_ENV } } = process
 const rootFolder = path.resolve(__dirname, '..', '..')
@@ -36,6 +37,7 @@ const clientConfig = {
     ]
   },
   plugins: [
+    new FaviconsWebpackPlugin('./source/pages/favicon.png'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new ExtractTextPlugin('./client.css'),
