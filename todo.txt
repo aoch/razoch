@@ -1,2 +1,9 @@
-(1) Convert code to use ServerSideRendering
-(2) Deploy application to a cloud-hosted service e.g. Zeit
+(*) Refactor application to use separate routes for each component
+    /app/epic
+    /app/saga
+    /app/thunk
+    /app/input
+    /app/clock
+(*) Restrict access to application by using authentication
+(*) Restrict access to components by using authentication
+
