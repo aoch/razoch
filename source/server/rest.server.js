@@ -1,28 +1,22 @@
-import apicache from 'apicache'
-import express from 'express'
-import fetch from 'isomorphic-fetch'
 
+import express from 'express'
+
+import dataCaching from './middleware/dataCaching'
+import starWarsApi from './middleware/starWarsApi'
+import handleError from './middleware/handleError'
+
+import addMiddleware from './helpers/addMiddleware'
 import callback from './helpers/callback'
 
 const restServer = express()
 
-const cache = apicache.middleware
-restServer.use(cache('24 hours'))
+const middlewareList = [
+  dataCaching,
+  starWarsApi,
+  handleError
+]
 
-const restUrlPath = '/api/people/:id'
-const restHandler = (request, response) => {
-  const { params: { id } } = request
-  const url = `https://swapi.co/api/people/${id}`
-  fetch(url)
-    .then((data) => data.json())
-    .then((json) => response.json(json))
-    .catch((error) => response.error(error).end())
-}
-restServer.get(restUrlPath, restHandler)
-
-const rootUrlPath = '*'
-const rootHandler = (request, response) => response.sendStatus(400).end()
-restServer.get(rootUrlPath, rootHandler)
+middlewareList.forEach(addMiddleware(restServer))
 
 const { env: { PORT } } = process
 restServer
