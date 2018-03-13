@@ -1,6 +1,6 @@
 import logger from './logger'
 
-const callback = (process, type) => (error) => {
+const handle = (process, type) => (error) => {
   const { env: { IP, PORT, NODE_ENV } } = process
   const [level, message] = error
     ? ['error', error.toString()]
@@ -8,4 +8,4 @@ const callback = (process, type) => (error) => {
   logger[level](message)
 }
 
-export default callback
+export default handle

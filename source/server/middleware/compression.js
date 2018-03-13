@@ -1,7 +1,7 @@
-export default {
+export default () => ({
   urlPattern: '*.js',
   methodName: 'get',
-  middleware: (request, response, next) => {
+  invocation: (request, response, next) => {
     const encoding =
       request.headers['accept-encoding'] || ''
     if (encoding.toLowerCase().includes('gzip')) {
@@ -10,4 +10,4 @@ export default {
     }
     next()
   }
-}
+})

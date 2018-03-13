@@ -1,9 +1,7 @@
 import express from 'express'
 
-const { env: { BUILD_FOLDER } } = process
-
-export default {
+export default ({ BUILD_FOLDER }) => ({
   urlPattern: '/',
   methodName: 'use',
-  middleware: express.static(`${BUILD_FOLDER}/client`)
-}
+  invocation: express.static(`${BUILD_FOLDER}/client`)
+})
