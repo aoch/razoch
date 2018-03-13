@@ -22,7 +22,9 @@
 //   developmentMiddleware
 //   serverProxyMiddleware
 //   staticAssetMiddleware
-//   handleErrorMiddleware
+//   DONE: handleError
+//   DONE: dataCaching
+//   DONE: starWarsApi
 // }
 
 // Then you can add each middleware in a generic manner like this
