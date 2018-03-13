@@ -1,7 +1,7 @@
 import apicache from 'apicache'
 
-export default {
+export default () => ({
   urlPattern: '/',
   methodName: 'use',
-  middleware: apicache.middleware('24 hours')
-}
+  invocation: apicache.middleware('24 hours')
+})

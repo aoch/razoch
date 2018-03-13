@@ -1,23 +1,25 @@
 
 import express from 'express'
+import { identity } from 'ramda'
 
 import dataCaching from './middleware/dataCaching'
 import starWarsApi from './middleware/starWarsApi'
 import handleError from './middleware/handleError'
+import install from './helpers/install'
+import handle from './helpers/handle'
 
-import addMiddleware from './helpers/addMiddleware'
-import callback from './helpers/callback'
-
-const restServer = express()
+const server = express()
 
 const middlewareList = [
-  dataCaching,
-  starWarsApi,
-  handleError
+  dataCaching(),
+  starWarsApi(),
+  handleError()
 ]
 
-middlewareList.forEach(addMiddleware(restServer))
+middlewareList
+  .filter(identity)
+  .map(install(server))
 
 const { env: { PORT } } = process
-restServer
-  .listen(PORT, callback(process, 'rest'))
+server
+  .listen(PORT, handle(process, 'rest'))

@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch'
 
-export default {
+export default () => ({
   urlPattern: '/api/people/:id',
   methodName: 'get',
-  middleware: (request, response) => {
+  invocation: (request, response) => {
     const { params: { id } } = request
     const url = `https://swapi.co/api/people/${id}`
     fetch(url)
@@ -11,4 +11,4 @@ export default {
       .then((json) => response.json(json))
       .catch((error) => response.error(error).end())
   }
-}
+})

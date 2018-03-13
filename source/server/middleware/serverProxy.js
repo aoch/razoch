@@ -1,7 +1,7 @@
 import proxyMiddleware from 'http-proxy-middleware'
 
-export default {
+export default ({ target }) => ({
   urlPattern: '/api/people/:id',
   methodName: 'use',
-  middleware: proxyMiddleware({ target: 'http://localhost:3001' })
-}
+  invocation: proxyMiddleware({ target })
+})
