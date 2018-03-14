@@ -6,32 +6,3 @@
     /app/clock
 (*) Restrict access to application by using authentication
 (*) Restrict access to components by using authentication
-
-(*) Make http/rest servers pull in middleware in a generic way e.g.
-// Define each middleware in a file that exports these objects
-// export default {
-//     urlPattern: '/',
-//     methodName: 'use'
-//     middleware: apicache.middleware('24 hours')
-// }
-
-// [middleware/index.js]
-// export default {
-//   compressionMiddleware
-//   modulesLoadMiddleware
-//   developmentMiddleware
-//   serverProxyMiddleware
-//   staticAssetMiddleware
-//   DONE: handleError
-//   DONE: dataCaching
-//   DONE: starWarsApi
-// }
-
-// Then you can add each middleware in a generic manner like this
-// import { middlewareList } from './middleware'
-// const addMiddleware = (server) =>
-//   ({ urlPattern, methodName, middleware }) =>
-//     server[methodName](urlPattern, middleware)
-// middlewareList.forEach(addMiddleware(server))
-
-

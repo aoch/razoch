@@ -1,10 +1,9 @@
-import express from 'express'
 import fs from 'fs'
+import express from 'express'
 import webpack from 'webpack'
 import httpServer from 'spdy'
 import { identity } from 'ramda'
 
-import config from '../../configs/webpack/development.client.babel'
 import dataCaching from './middleware/dataCaching'
 import application from './middleware/application'
 import compression from './middleware/compression'
@@ -12,30 +11,36 @@ import staticAsset from './middleware/staticAsset'
 import development from './middleware/development'
 import modulesLoad from './middleware/modulesLoad'
 import serverProxy from './middleware/serverProxy'
+
 import handle from './helpers/handle'
 import install from './helpers/install'
-import Application from '../client/application/application'
-import rootReducer from '../store/rootReducer'
 
 const server = express()
 
-const { env: { PORT, NODE_ENV, BUILD_FOLDER } } = process
-const isProduction = NODE_ENV === 'production'
-const compiler = webpack(config)
+const { env: { NODE_ENV, BUILD_FOLDER, PORT } } = process
+const isProduction = (NODE_ENV === 'production')
+
+const context = {
+  Application: require('../client/application/application').default, // eslint-disable-line
+  rootReducer: require('../store/rootReducer').default, // eslint-disable-line
+  BUILD_FOLDER,
+  compiler: webpack(require('../../configs/webpack/development.client.babel').default), // eslint-disable-line
+  target: 'http://localhost:3001'
+}
 
 const middlewareList = [
-  dataCaching(),
-  application({ Application, rootReducer, BUILD_FOLDER }),
-  isProduction && compression(),
-  isProduction && staticAsset({ BUILD_FOLDER }),
-  !isProduction && development({ compiler }),
-  !isProduction && modulesLoad({ compiler }),
-  serverProxy({ target: 'http://localhost:3001' })
+  dataCaching,
+  application,
+  isProduction && compression,
+  isProduction && staticAsset,
+  !isProduction && development,
+  !isProduction && modulesLoad,
+  serverProxy
 ]
 
 middlewareList
   .filter(identity)
-  .map(install(server))
+  .map(install(server, context))
 
 const options = {
   key: fs.readFileSync('./configs/server/.key'),
