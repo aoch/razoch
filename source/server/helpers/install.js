@@ -1,4 +1,4 @@
-const install = (server, context ) => (middleware) => {
+const install = (server, context) => (middleware) => {
   const {
     urlPattern,
     methodName,
