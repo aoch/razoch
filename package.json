@@ -100,6 +100,7 @@
     "babel-plugin-ramda": "1.5.0",
     "babel-plugin-syntax-dynamic-import": "6.18.0",
     "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.13",
     "babel-plugin-transform-require-ignore": "^0.1.1",
@@ -167,58 +168,8 @@
     ]
   },
   "babel": {
-    "presets": [
-      "react",
-      [
-        "env",
-        {
-          "targets": {
-            "browsers": [
-              "Safari >= 11",
-              "Chrome >= 64",
-              "Firefox >= 59",
-              "Edge >= 13"
-            ]
-          }
-        }
-      ]
-    ],
     "plugins": [
-      "transform-class-properties",
-      "transform-object-rest-spread",
-      "syntax-dynamic-import",
-      "ramda"
-    ],
-    "env": {
-      "node": {
-        "plugins": [
-          [
-            "transform-require-ignore",
-            {
-              "extensions": [
-                ".css",
-                ".scss"
-              ]
-            }
-          ]
-        ]
-      },
-      "production": {
-        "plugins": [
-          [
-            "transform-react-remove-prop-types",
-            {
-              "mode": "wrap",
-              "ignoreFilenames": [
-                "node_modules"
-              ]
-            }
-          ]
-        ]
-      },
-      "development": {
-        "plugins": []
-      }
-    }
+      "transform-es2015-modules-commonjs"
+    ]
   }
 }
