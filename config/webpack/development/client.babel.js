@@ -16,7 +16,7 @@ const clientConfig = {
       'webpack-hot-middleware/client?reload=true',
       './source/client/client.jsx'
     ],
-    vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
+    vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs']
   },
   output: {
     path: clientFolder,

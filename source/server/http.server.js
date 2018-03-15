@@ -2,9 +2,9 @@ import express from 'express'
 import fs from 'fs'
 import webpack from 'webpack'
 import httpServer from 'spdy'
-import { identity } from 'ramda'
 
 import config from '../../config/webpack/development/client.babel'
+import idempotent from './middleware/idempotent'
 import dataCaching from './middleware/dataCaching'
 import application from './middleware/application'
 import compression from './middleware/compression'
@@ -26,15 +26,14 @@ const compiler = webpack(config)
 const middlewareList = [
   dataCaching(),
   application({ Application, rootReducer, BUILD_FOLDER }),
-  isProduction && compression(),
-  isProduction && staticAsset({ BUILD_FOLDER }),
-  !isProduction && development({ compiler }),
-  !isProduction && modulesLoad({ compiler }),
+  isProduction ? compression() : idempotent(),
+  isProduction ? staticAsset({ BUILD_FOLDER }) : idempotent(),
+  isProduction ? idempotent() : development({ compiler }),
+  isProduction ? idempotent() : modulesLoad({ compiler }),
   serverProxy({ target: 'http://localhost:3001' })
 ]
 
 middlewareList
-  .filter(identity)
   .map(install(server))
 
 const options = {

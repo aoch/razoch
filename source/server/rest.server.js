@@ -1,6 +1,5 @@
 
 import express from 'express'
-import { identity } from 'ramda'
 
 import dataCaching from './middleware/dataCaching'
 import starWarsApi from './middleware/starWarsApi'
@@ -17,7 +16,6 @@ const middlewareList = [
 ]
 
 middlewareList
-  .filter(identity)
   .map(install(server))
 
 const { env: { PORT } } = process
