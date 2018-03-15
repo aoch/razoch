@@ -27,15 +27,15 @@
     "build:client:dev": "cross-env NODE_ENV=development webpack --display-error-details --config configs/webpack/development/client.babel.js",
     "build:http:server:dev": "cross-env NODE_ENV=development BABEL_ENV=node webpack --display-error-details --config configs/webpack/development/http.server.babel.js",
     "build:rest:server:dev": "cross-env NODE_ENV=development BABEL_ENV=node webpack --display-error-details --config configs/webpack/development/rest.server.babel.js",
-    "start:http:server:dev": "cross-env NODE_ENV=development IP=https://localhost PORT=3000 node build/development/server/http.server",
-    "start:rest:server:dev": "cross-env NODE_ENV=development IP=http://localhost PORT=3001 node build/development/server/rest.server",
+    "start:http:server:dev": "node -r dotenv/config build/development/server/http.server dotenv_config_path=./configs/dotenv/development/http.server.env",
+    "start:rest:server:dev": "node -r dotenv/config build/development/server/rest.server dotenv_config_path=./configs/dotenv/development/rest.server.env",
     "------------------------ Production Helpers ------------------------": "",
     "clean:prd": "rimraf build/production",
     "build:client:prd": "cross-env NODE_ENV=production webpack --display-error-details --config configs/webpack/production/client.babel.js",
     "build:http:server:prd": "cross-env NODE_ENV=production BABEL_ENV=node webpack --display-error-details --config configs/webpack/production/http.server.babel.js",
     "build:rest:server:prd": "cross-env NODE_ENV=production BABEL_ENV=node webpack --display-error-details --config configs/webpack/production/rest.server.babel.js",
-    "start:http:server:prd": "cross-env NODE_ENV=production IP=https://localhost PORT=3000 node build/production/server/http.server",
-    "start:rest:server:prd": "cross-env NODE_ENV=production IP=http://localhost PORT=3001 node build/production/server/rest.server"
+    "start:http:server:prd": "node -r dotenv/config build/production/server/http.server dotenv_config_path=./configs/dotenv/production/http.server.env",
+    "start:rest:server:prd": "node -r dotenv/config build/production/server/rest.server dotenv_config_path=./configs/dotenv/production/rest.server.env"
   },
   "engines": {
     "node": "8.9.4",
