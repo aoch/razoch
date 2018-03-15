@@ -4,7 +4,7 @@ import webpack from 'webpack'
 import httpServer from 'spdy'
 import { identity } from 'ramda'
 
-import config from '../../configs/webpack/development.client.babel'
+import config from '../../config/webpack/development/client.babel'
 import dataCaching from './middleware/dataCaching'
 import application from './middleware/application'
 import compression from './middleware/compression'
@@ -38,8 +38,8 @@ middlewareList
   .map(install(server))
 
 const options = {
-  key: fs.readFileSync('./configs/server/.key'),
-  cert: fs.readFileSync('./configs/server/.crt'),
+  key: fs.readFileSync('./config/server/.key'),
+  cert: fs.readFileSync('./config/server/.crt'),
 }
 
 httpServer

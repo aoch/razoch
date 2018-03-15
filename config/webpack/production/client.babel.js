@@ -7,7 +7,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
 const { env: { NODE_ENV } } = process
-const rootFolder = path.resolve(__dirname, '..', '..')
+const rootFolder = path.resolve(__dirname, '..', '..', '..')
 const buildFolder = path.join(rootFolder, 'build', NODE_ENV)
 const clientFolder = path.join(buildFolder, 'client')
 
@@ -25,7 +25,7 @@ const clientConfig = {
     rules: [
       {
         test: /\.(jsx?)$/,
-        exclude: [/node_modules/, /build/, /configs/],
+        exclude: [/node_modules/, /build/, /config/],
         use: 'babel-loader'
       },
       {

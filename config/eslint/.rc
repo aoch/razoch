@@ -50,7 +50,7 @@
       "error",
       {
         "devDependencies": [
-          "configs/**/*.js",
+          "config/**/*.js",
           "source/**/*.test.js"
         ]
       }
