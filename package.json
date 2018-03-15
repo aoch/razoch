@@ -2,7 +2,6 @@
   "name": "razoch",
   "version": "1.0.0",
   "description": "A React/Redux Playground",
-  "main": "build/server/server.min",
   "scripts": {
     "------------------------ LifeCycle Scripts ------------------------": "",
     "prepush": "run-s lint:scss lint:code test:stat test:dcap",
@@ -81,6 +80,7 @@
     "react-dom": "16.2.0",
     "react-redux": "5.0.7",
     "redux": "3.7.2",
+    "redux-devtools-extension": "2.13.2",
     "redux-immutable-state-invariant": "2.1.0",
     "redux-observable": "0.18.0",
     "redux-saga": "0.16.0",
@@ -167,6 +167,7 @@
       "<rootDir>/config/enzyme/setUp.js"
     ]
   },
+  "------------------------ Babel For Webpack Config Files (Not Application Files) ------------------------": "",
   "babel": {
     "presets": [
       "react"

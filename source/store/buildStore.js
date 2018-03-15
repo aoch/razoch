@@ -3,6 +3,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createEpicMiddleware } from 'redux-observable'
 import createSagaMiddleware from 'redux-saga'
 import createDebugMiddleware from 'redux-immutable-state-invariant'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { identity } from 'ramda'
 import noop from 'no-op'
 
@@ -12,14 +13,12 @@ import rootReducer from './rootReducer'
 
 const buildStore = (
   isProduction,
-  initialState = {},
-  window = { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: noop }
+  initialState = {}
 ) => {
-  const { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: devCompose } = window
   const epicMiddleware = createEpicMiddleware(rootEpic)
   const sagaMiddleware = createSagaMiddleware()
   const debugMiddleware = (isProduction ? null : createDebugMiddleware())
-  const composeEnhancers = (isProduction ? compose : devCompose)
+  const composeEnhancers = (isProduction ? compose : composeWithDevTools)
 
   const middlewareList = [
     debugMiddleware,
