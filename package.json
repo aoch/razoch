@@ -168,8 +168,14 @@
     ]
   },
   "babel": {
+    "presets": [
+      "react"
+    ],
     "plugins": [
-      "transform-es2015-modules-commonjs"
+      "transform-class-properties",
+      "transform-object-rest-spread",
+      "transform-es2015-modules-commonjs",
+      "syntax-dynamic-import"
     ]
   }
 }

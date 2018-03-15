@@ -19,15 +19,15 @@ import rootReducer from '../store/rootReducer'
 
 const server = express()
 
-const { env: { PORT, NODE_ENV, BUILD_FOLDER } } = process
+const { env: { PORT, NODE_ENV, BUILD_DIR } } = process
 const isProduction = NODE_ENV === 'production'
 const compiler = webpack(config)
 
 const middlewareList = [
   dataCaching(),
-  application({ Application, rootReducer, BUILD_FOLDER }),
+  application({ Application, rootReducer, BUILD_DIR }),
   isProduction && compression(),
-  isProduction && staticAsset({ BUILD_FOLDER }),
+  isProduction && staticAsset({ BUILD_DIR }),
   !isProduction && development({ compiler }),
   !isProduction && modulesLoad({ compiler }),
   serverProxy({ target: 'http://localhost:3001' })

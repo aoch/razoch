@@ -31,7 +31,7 @@ const serverConfig = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-      BUILD_FOLDER: buildFolder
+      BUILD_DIR: buildFolder
     })
   ],
   target: 'node',
