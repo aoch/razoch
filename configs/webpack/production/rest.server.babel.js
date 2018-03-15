@@ -4,14 +4,13 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
 const { env: { NODE_ENV } } = process
-const rootFolder = path.resolve(__dirname, '..', '..')
+const rootFolder = path.resolve(__dirname, '..', '..', '..')
 const buildFolder = path.join(rootFolder, 'build', NODE_ENV)
 const serverFolder = path.join(buildFolder, 'server')
 
 const serverConfig = {
   entry: {
-    'http.server': ['./source/server/http.server.js'],
-    'rest.server': ['./source/server/rest.server.js'],
+    'rest.server': ['./source/server/rest.server.js']
   },
   output: {
     path: serverFolder,

@@ -4,7 +4,7 @@ import webpack from 'webpack'
 import httpServer from 'spdy'
 import { identity } from 'ramda'
 
-import config from '../../configs/webpack/development.client.babel'
+import config from '../../configs/webpack/development/client.babel'
 import dataCaching from './middleware/dataCaching'
 import application from './middleware/application'
 import compression from './middleware/compression'
