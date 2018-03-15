@@ -16,11 +16,13 @@
 // ------------------------------------------------------------------
 // CleanUp Tasks
 // ------------------------------------------------------------------
-(*) See if you can add depcheck to your prepush command
+(*) Use the following to fail git prepush if unused packages in package.json
+    npm add npm-check
+    node_modules/.bin/npm-check -p  | grep NOTUSED
 (*) make Redux Devtools work with Safari
 (*) make Redux Devtools work with Firefox
 (*) Move Jest config out of package.json into config subfolder
 (*) Move Babel config out of package.json into config subfolder
 (*) Create a patch for bundlesize that allows you to pass config
-    in via script rather than commandline
+    in via external script rather than cin package.json section
 // ------------------------------------------------------------------
