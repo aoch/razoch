@@ -4,7 +4,7 @@ import { createStore } from 'redux'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 
-export default ({ Application, rootReducer, BUILD_DIR }) => ({
+export default ({ Application, rootReducer, BUILD_FOLDER }) => ({
   urlPattern: '/',
   methodName: 'get',
   invocation: (request, response) => {
@@ -14,7 +14,7 @@ export default ({ Application, rootReducer, BUILD_DIR }) => ({
         <Application />
       </Provider>
     )
-    const indexFile = `${BUILD_DIR}/client/index.html`
+    const indexFile = `${BUILD_FOLDER}/client/index.html`
     const template = fs.readFileSync(indexFile, 'utf-8').toString()
     const realContent = renderToString(jsx)
     const placeholder = '<=% preloadedApplication %>'

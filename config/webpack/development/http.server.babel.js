@@ -3,18 +3,18 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
-const { env: { NODE_ENV, BABEL_FILE, BUILD_DIR, SERVER_DIR } } = process
+const { env: { NODE_ENV, BABEL_FILE, BUILD_FOLDER, SERVER_FOLDER } } = process
 
 const babelFile = path.resolve(process.cwd(), BABEL_FILE)
-const buildDir = path.resolve(process.cwd(), BUILD_DIR)
-const serverDir = path.resolve(process.cwd(), SERVER_DIR)
+const buildFolder = path.resolve(process.cwd(), BUILD_FOLDER)
+const serverFolder = path.resolve(process.cwd(), SERVER_FOLDER)
 
 const serverConfig = {
   entry: {
     'http.server': ['./source/server/http.server.js']
   },
   output: {
-    path: serverDir,
+    path: serverFolder,
     filename: './[name].js'
   },
   devtool: 'source-map',
@@ -38,7 +38,7 @@ const serverConfig = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-      BUILD_DIR: buildDir
+      BUILD_FOLDER: buildFolder
     }),
   ],
   target: 'node',
