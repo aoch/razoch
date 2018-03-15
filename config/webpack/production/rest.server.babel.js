@@ -3,10 +3,11 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
-const { env: { NODE_ENV } } = process
-const rootFolder = path.resolve(__dirname, '..', '..', '..')
-const buildFolder = path.join(rootFolder, 'build', NODE_ENV)
-const serverFolder = path.join(buildFolder, 'server')
+const { env: { NODE_ENV, BABEL_FILE, BUILD_FOLDER, SERVER_FOLDER } } = process
+
+const babelFile = path.resolve(process.cwd(), BABEL_FILE)
+const buildFolder = path.resolve(process.cwd(), BUILD_FOLDER)
+const serverFolder = path.resolve(process.cwd(), SERVER_FOLDER)
 
 const serverConfig = {
   entry: {
@@ -21,7 +22,12 @@ const serverConfig = {
       {
         test: /\.(jsx?)$/,
         exclude: [/node_modules/, /build/, /config/],
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            extends: babelFile
+          }
+        }
       },
       {
         loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
@@ -31,7 +37,7 @@ const serverConfig = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-      BUILD_DIR: buildFolder
+      BUILD_FOLDER: buildFolder
     })
   ],
   target: 'node',

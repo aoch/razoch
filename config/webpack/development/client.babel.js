@@ -4,10 +4,10 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
-const { env: { NODE_ENV, BABEL_FILE, CLIENT_DIR } } = process
+const { env: { NODE_ENV, BABEL_FILE, CLIENT_FOLDER } } = process
 
 const babelFile = path.resolve(process.cwd(), BABEL_FILE)
-const clientDir = path.resolve(process.cwd(), CLIENT_DIR)
+const clientFolder = path.resolve(process.cwd(), CLIENT_FOLDER)
 
 const clientConfig = {
   devtool: 'source-map',
@@ -19,7 +19,7 @@ const clientConfig = {
     vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
   },
   output: {
-    path: clientDir,
+    path: clientFolder,
     filename: '[name].js',
     pathinfo: true
   },
