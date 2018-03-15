@@ -6,7 +6,7 @@ import buildStore from '../store/buildStore'
 import './client.scss'
 
 const isProduction = (process.env.NODE_ENV === 'production')
-const store = buildStore(isProduction, {}, window)
+const store = buildStore(isProduction, {})
 
 const render = (App) => {
   const element = (
