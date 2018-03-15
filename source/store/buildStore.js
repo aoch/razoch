@@ -10,7 +10,7 @@ import rootSaga from './rootSaga'
 import rootReducer from './rootReducer'
 
 const buildStore = (isProduction, initialState = {}) => {
-  const idempotent = store => next => action => next(action)
+  const idempotent = () => (next) => (action) => next(action)
   const epic = createEpicMiddleware(rootEpic)
   const saga = createSagaMiddleware()
   const debug = isProduction ? idempotent : createDebugMiddleware()
