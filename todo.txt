@@ -1,3 +1,6 @@
+// ------------------------------------------------------------------
+// Functionality Tasks
+// ------------------------------------------------------------------
 (*) Refactor application to use separate routes for each component
     /app/epic
     /app/saga
@@ -6,32 +9,20 @@
     /app/clock
 (*) Restrict access to application by using authentication
 (*) Restrict access to components by using authentication
-
-(*) Make http/rest servers pull in middleware in a generic way e.g.
-// Define each middleware in a file that exports these objects
-// export default {
-//     urlPattern: '/',
-//     methodName: 'use'
-//     middleware: apicache.middleware('24 hours')
-// }
-
-// [middleware/index.js]
-// export default {
-//   compressionMiddleware
-//   modulesLoadMiddleware
-//   developmentMiddleware
-//   serverProxyMiddleware
-//   staticAssetMiddleware
-//   DONE: handleError
-//   DONE: dataCaching
-//   DONE: starWarsApi
-// }
-
-// Then you can add each middleware in a generic manner like this
-// import { middlewareList } from './middleware'
-// const addMiddleware = (server) =>
-//   ({ urlPattern, methodName, middleware }) =>
-//     server[methodName](urlPattern, middleware)
-// middlewareList.forEach(addMiddleware(server))
+// ------------------------------------------------------------------
 
 
+
+// ------------------------------------------------------------------
+// CleanUp Tasks
+// ------------------------------------------------------------------
+(*) Use the following to fail git prepush if unused packages in package.json
+    npm add npm-check
+    node_modules/.bin/npm-check -p  | grep NOTUSED
+(*) make Redux Devtools work with Safari
+(*) make Redux Devtools work with Firefox
+(*) Move Jest config out of package.json into config subfolder
+(*) Move Babel config out of package.json into config subfolder
+(*) Create a patch for bundlesize that allows you to pass config
+    in via external script rather than cin package.json section
+// ------------------------------------------------------------------
