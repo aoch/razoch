@@ -3,17 +3,18 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackNodeExternals from 'webpack-node-externals'
 
-const { env: { NODE_ENV } } = process
-const rootFolder = path.resolve(__dirname, '..', '..', '..')
-const buildFolder = path.join(rootFolder, 'build', NODE_ENV)
-const serverFolder = path.join(buildFolder, 'server')
+const { env: { NODE_ENV, BABEL_FILE, BUILDS_DIR, SERVER_DIR } } = process
+
+const babelFile = path.resolve(process.cwd(), BABEL_FILE)
+const buildsDir = path.resolve(process.cwd(), BUILDS_DIR)
+const serverDir = path.resolve(process.cwd(), SERVER_DIR)
 
 const serverConfig = {
   entry: {
     'rest.server': ['./source/server/rest.server.js']
   },
   output: {
-    path: serverFolder,
+    path: serverDir,
     filename: './[name].js'
   },
   devtool: 'source-map',
@@ -22,7 +23,12 @@ const serverConfig = {
       {
         test: /\.(jsx?)$/,
         exclude: [/node_modules/, /build/, /config/],
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            extends: babelFile
+          }
+        }
       },
       {
         loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
@@ -32,7 +38,7 @@ const serverConfig = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-      BUILD_FOLDER: buildFolder
+      BUILD_FOLDER: buildsDir
     }),
   ],
   target: 'node',
