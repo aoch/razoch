@@ -14,7 +14,7 @@ const clientFolder = path.resolve(process.cwd(), CLIENT_FOLDER)
 const clientConfig = {
   entry: {
     client: ['./source/client/client.jsx'],
-    vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs', 'ramda']
+    vendor: ['react', 'whatwg-fetch', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'redux-saga', 'redux-observable', 'rxjs']
   },
   output: {
     path: clientFolder,
