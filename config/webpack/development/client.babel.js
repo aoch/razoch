@@ -4,10 +4,10 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
-const { env: { NODE_ENV } } = process
-const rootFolder = path.resolve(__dirname, '..', '..', '..')
-const buildFolder = path.join(rootFolder, 'build', NODE_ENV)
-const clientFolder = path.join(buildFolder, 'client')
+const { env: { NODE_ENV, BABEL_FILE, CLIENT_FOLDER } } = process
+
+const babelFile = path.resolve(process.cwd(), BABEL_FILE)
+const clientFolder = path.resolve(process.cwd(), CLIENT_FOLDER)
 
 const clientConfig = {
   devtool: 'source-map',
@@ -28,7 +28,12 @@ const clientConfig = {
       {
         test: /\.(jsx?)$/,
         exclude: [/node_modules/, /build/, /config/],
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            extends: babelFile
+          }
+        }
       },
       {
         loader: ExtractTextPlugin.extract('css-loader!sass-loader'),

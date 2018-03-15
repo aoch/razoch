@@ -1,0 +1,55 @@
+{
+  "presets": [
+    "react",
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "Safari >= 11",
+            "Chrome >= 64",
+            "Firefox >= 59",
+            "Edge >= 13"
+          ]
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "syntax-dynamic-import",
+    "ramda"
+  ],
+  "env": {
+    "node": {
+      "plugins": [
+        [
+          "transform-require-ignore",
+          {
+            "extensions": [
+              ".css",
+              ".scss"
+            ]
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "wrap",
+            "ignoreFilenames": [
+              "node_modules"
+            ]
+          }
+        ]
+      ]
+    },
+    "development": {
+      "plugins": []
+    }
+  }
+}
