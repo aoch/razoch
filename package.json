@@ -16,29 +16,29 @@
     "zboot:prd": "run-s clean:prd build:prd test:size start:prd",
     "------------------------ Maintenance Scripts ---------------------------": "",
     "clean:all": "rimraf build node_modules && npm install",
-    "lint:scss": "stylelint --config configs/stylelint/.rc './source/**/*.scss'",
-    "lint:code": "eslint --ignore-path configs/eslint/.ignore --config configs/eslint/.rc --ext .js,.jsx source webpack",
+    "lint:scss": "stylelint --config config/stylelint/.rc './source/**/*.scss'",
+    "lint:code": "eslint --ignore-path config/eslint/.ignore --config config/eslint/.rc --ext .js,.jsx source webpack",
     "test:code": "jest --silent --coverage=false ",
     "test:stat": "jest --silent --coverage=true",
     "test:dcap": "jscpd --path source --limit 3",
     "test:size": "bundlesize",
     "------------------------ Development Helpers ------------------------": "",
     "clean:dev": "rimraf build/development",
-    "build:client:dev": "env-cmd configs/env/dev/client.env webpack --display-error-details --config configs/webpack/development.client.babel.js",
-    "build:http:server:dev": "env-cmd configs/env/dev/http.server.env webpack --display-error-details --config configs/webpack/development.server.babel.js",
-    "build:rest:server:dev": "env-cmd configs/env/dev/rest.server.env webpack --display-error-details --config configs/webpack/development.server.babel.js",
-    "start:http:server:dev": "env-cmd configs/env/dev/http.server.env node build/development/server/http.server",
-    "start:rest:server:dev": "env-cmd configs/env/dev/rest.server.env node build/development/server/rest.server",
+    "build:client:dev": "env-cmd config/env/development/client.env webpack --config config/webpack/development/client.babel.js",
+    "build:http:server:dev": "env-cmd config/env/development/http.server.env webpack --config config/webpack/development/http.server.babel.js",
+    "build:rest:server:dev": "env-cmd config/env/development/rest.server.env webpack --config config/webpack/development/rest.server.babel.js",
+    "start:http:server:dev": "env-cmd config/env/development/http.server.env node build/development/server/http.server",
+    "start:rest:server:dev": "env-cmd config/env/development/rest.server.env node build/development/server/rest.server",
     "------------------------ Production Helpers ------------------------": "",
     "clean:prd": "rimraf build/production",
-    "build:client:prd": "env-cmd configs/env/prd/client.env webpack --display-error-details --config configs/webpack/production.client.babel.js",
-    "build:http:server:prd": "env-cmd configs/env/prd/http.server.env webpack --display-error-details --config configs/webpack/production.server.babel.js",
-    "build:rest:server:prd": "env-cmd configs/env/prd/rest.server.env webpack --display-error-details --config configs/webpack/production.server.babel.js",
-    "start:http:server:prd": "env-cmd configs/env/prd/http.server.env node build/production/server/http.server",
-    "start:rest:server:prd": "env-cmd configs/env/prd/rest.server.env node build/production/server/rest.server"
+    "build:client:prd": "env-cmd config/env/production/client.env webpack --config config/webpack/production/client.babel.js",
+    "build:http:server:prd": "env-cmd config/env/production/http.server.env webpack --config config/webpack/production/http.server.babel.js",
+    "build:rest:server:prd": "env-cmd config/env/production/rest.server.env webpack --config config/webpack/production/rest.server.babel.js",
+    "start:http:server:prd": "env-cmd config/env/production/http.server.env node build/production/server/http.server",
+    "start:rest:server:prd": "env-cmd config/env/production/rest.server.env node build/production/server/rest.server"
   },
   "engines": {
-    "node": "8.9.4",
+    "node": "8.10.0",
     "npm": "5.6.0"
   },
   "repository": {
@@ -165,7 +165,7 @@
       }
     },
     "setupFiles": [
-      "<rootDir>/configs/enzyme/setUp.js"
+      "<rootDir>/config/enzyme/setUp.js"
     ]
   },
   "babel": {
