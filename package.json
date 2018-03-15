@@ -73,7 +73,6 @@
     "express": "4.16.3",
     "http-proxy-middleware": "0.18.0",
     "isomorphic-fetch": "2.2.1",
-    "no-op": "1.0.3",
     "prop-types": "15.6.1",
     "ramda": "0.25.0",
     "react": "16.2.0",
