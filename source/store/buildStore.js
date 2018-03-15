@@ -5,7 +5,6 @@ import createSagaMiddleware from 'redux-saga'
 import createDebugMiddleware from 'redux-immutable-state-invariant'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { identity } from 'ramda'
-import noop from 'no-op'
 
 import rootEpic from './rootEpic'
 import rootSaga from './rootSaga'
