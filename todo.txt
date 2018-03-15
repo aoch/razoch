@@ -11,8 +11,6 @@
 (*) Restrict access to components by using authentication
 // ------------------------------------------------------------------
 
-
-
 // ------------------------------------------------------------------
 // CleanUp Tasks
 // ------------------------------------------------------------------
@@ -22,7 +20,6 @@
 (*) make Redux Devtools work with Safari
 (*) make Redux Devtools work with Firefox
 (*) Move Jest config out of package.json into config subfolder
-(*) Move Babel config out of package.json into config subfolder
 (*) Create a patch for bundlesize that allows you to pass config
-    in via external script rather than cin package.json section
+    in via external script rather than in package.json section
 // ------------------------------------------------------------------
