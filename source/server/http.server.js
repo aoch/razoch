@@ -25,12 +25,12 @@ const compiler = webpack(config)
 
 const middlewareList = [
   dataCaching(),
-  application({ Application, rootReducer, BUILD_FOLDER }),
   isProduction ? compression() : idempotent(),
   isProduction ? staticAsset({ BUILD_FOLDER }) : idempotent(),
+  serverProxy({ target: 'http://localhost:3001' }),
   isProduction ? idempotent() : development({ compiler }),
   isProduction ? idempotent() : modulesLoad({ compiler }),
-  serverProxy({ target: 'http://localhost:3001' })
+  application({ Application, rootReducer, BUILD_FOLDER }),
 ]
 
 middlewareList
