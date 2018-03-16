@@ -17,7 +17,6 @@
 (*) Use the following to fail git prepush if unused packages in package.json
     npm add npm-check
     node_modules/.bin/npm-check -p  | grep NOTUSED
-(*) Move Jest config out of package.json into config subfolder
 (*) Create a patch for bundlesize that allows you to pass config
     in via external script rather than in package.json section
 // ------------------------------------------------------------------

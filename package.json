@@ -144,7 +144,7 @@
     },
     {
       "path": "build/production/client/vendor.*.js",
-      "maxSize": "103 kB"
+      "maxSize": "87 kB"
     }
   ],
   "------------------------ Babel For Webpack Config Files (Not Application Files) ------------------------": "",
