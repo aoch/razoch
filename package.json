@@ -17,8 +17,8 @@
     "clean:all": "rimraf build node_modules && npm install",
     "lint:scss": "stylelint --config config/stylelint/.rc './source/**/*.scss'",
     "lint:code": "eslint --ignore-path config/eslint/.ignore --config config/eslint/.rc --ext .js,.jsx source webpack",
-    "test:code": "jest --silent --coverage=false ",
-    "test:stat": "jest --silent --coverage=true",
+    "test:code": "jest --coverage=false --config=/Users/debugme/Downloads/razoch/config/jest/config.json",
+    "test:stat": "jest --coverage=true --config=/Users/debugme/Downloads/razoch/config/jest/config.json",
     "test:dcap": "jscpd --path source --limit 3",
     "test:size": "bundlesize",
     "------------------------ Development Helpers ------------------------": "",
@@ -147,24 +147,6 @@
       "maxSize": "103 kB"
     }
   ],
-  "jest": {
-    "collectCoverage": true,
-    "coverageDirectory": "<rootDir>/build/testCoverage/",
-    "collectCoverageFrom": [
-      "source/**/*.{js,jsx}"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 0,
-        "functions": 3,
-        "lines": 1,
-        "statements": 1
-      }
-    },
-    "setupFiles": [
-      "<rootDir>/config/enzyme/setUp.js"
-    ]
-  },
   "------------------------ Babel For Webpack Config Files (Not Application Files) ------------------------": "",
   "babel": {
     "presets": [
