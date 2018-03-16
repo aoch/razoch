@@ -1,0 +1,20 @@
+{
+    "collectCoverage": true,
+    "roots": ["<rootDir>../../source"],
+    "modulePaths": ["<rootDir>../../source"],
+    "coverageDirectory": "<rootDir>../../build/testCoverage/",
+    "collectCoverageFrom": [
+      "test.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 3,
+        "lines": 1,
+        "statements": 1
+      }
+    },
+    "setupFiles": [
+      "<rootDir>../../config/enzyme/setUp.js"
+    ]
+  }
