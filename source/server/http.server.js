@@ -24,7 +24,7 @@ const { env: { PORT, NODE_ENV, BUILD_FOLDER } } = process
 const isProduction = NODE_ENV === 'production'
 const compiler = webpack(config)
 
-logger.error(`[http.server] ${BUILD_FOLDER}`)
+logger.debug(`[http.server] ${BUILD_FOLDER}`)
 
 const middlewareList = [
   // dataCaching(),
