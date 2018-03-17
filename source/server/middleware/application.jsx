@@ -10,7 +10,7 @@ const application = (props) => ({
   urlPattern: '*',
   methodName: 'get',
   invocation: (request, response) => {
-    logger.error(`[application.middleware] ${request.path}`)
+    logger.debug(`[application.middleware] ${request.path}`)
     const { Routes, rootReducer, BUILD_FOLDER } = props
     const store = createStore(rootReducer)
     const context = {}
