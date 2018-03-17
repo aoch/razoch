@@ -5,7 +5,7 @@ const staticAsset = (props) => ({
   urlPattern: '/',
   methodName: 'use',
   invocation: (request, response, next) => {
-    logger.debug(`[staticAsset.middleware] ${request.path}`)
+    logger.info(`[staticAsset.middleware] ${request.path}`)
     return express.static(`${props.BUILD_FOLDER}/client`)(request, response, next)
   }
 })

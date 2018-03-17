@@ -149,7 +149,7 @@
       "maxSize": "97 kB"
     }
   ],
-  "------------------------ Babel For Webpack Config Files (Not Application Files) ------------------------": "",
+  "------------------------ Babel For Webpack Config Files (Babel For Application Is Under `config` Folder) ------------------------": "",
   "babel": {
     "presets": [
       "react"
