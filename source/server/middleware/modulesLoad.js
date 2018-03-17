@@ -1,7 +1,9 @@
 import buildHotMiddleware from 'webpack-hot-middleware'
 
-export default ({ compiler }) => ({
+const modulesLoad = (props) => ({
   urlPattern: '/',
   methodName: 'use',
-  invocation: buildHotMiddleware(compiler)
+  invocation: buildHotMiddleware(props.compiler)
 })
+
+export default modulesLoad

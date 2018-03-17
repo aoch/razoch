@@ -1,7 +1,9 @@
 import apicache from 'apicache'
 
-export default () => ({
+const dataCaching = () => ({
   urlPattern: '/',
   methodName: 'use',
   invocation: apicache.middleware('24 hours')
 })
+
+export default dataCaching

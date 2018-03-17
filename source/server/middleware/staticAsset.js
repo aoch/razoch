@@ -1,7 +1,9 @@
 import express from 'express'
 
-export default ({ BUILD_FOLDER }) => ({
+const staticAsset = (props) => ({
   urlPattern: '/',
   methodName: 'use',
-  invocation: express.static(`${BUILD_FOLDER}/client`)
+  invocation: express.static(`${props.BUILD_FOLDER}/client`)
 })
+
+export default staticAsset

@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-export default () => ({
+const starWarsApi = () => ({
   urlPattern: '/api/people/:id',
   methodName: 'get',
   invocation: (request, response) => {
@@ -12,3 +12,5 @@ export default () => ({
       .catch((error) => response.error(error).end())
   }
 })
+
+export default starWarsApi

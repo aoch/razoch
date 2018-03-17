@@ -1,7 +1,9 @@
 import buildDevMiddleware from 'webpack-dev-middleware'
 
-export default ({ compiler }) => ({
+const development = (props) => ({
   urlPattern: '/',
   methodName: 'use',
-  invocation: buildDevMiddleware(compiler, { noInfo: true })
+  invocation: buildDevMiddleware(props.compiler, { noInfo: true })
 })
+
+export default development
