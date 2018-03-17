@@ -1,7 +1,9 @@
 import proxyMiddleware from 'http-proxy-middleware'
 
-export default ({ target }) => ({
+const serverProxy = (props) => ({
   urlPattern: '/api/people/:id',
   methodName: 'use',
-  invocation: proxyMiddleware({ target })
+  invocation: proxyMiddleware({ target: props.target })
 })
+
+export default serverProxy

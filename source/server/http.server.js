@@ -14,7 +14,7 @@ import modulesLoad from './middleware/modulesLoad'
 import serverProxy from './middleware/serverProxy'
 import handle from './helpers/handle'
 import install from './helpers/install'
-import Application from '../client/application/application'
+import Routes from '../routes/Routes'
 import rootReducer from '../store/rootReducer'
 
 const server = express()
@@ -25,12 +25,12 @@ const compiler = webpack(config)
 
 const middlewareList = [
   dataCaching(),
+  application({ Routes, rootReducer, BUILD_FOLDER }),
   isProduction ? compression() : idempotent(),
   isProduction ? staticAsset({ BUILD_FOLDER }) : idempotent(),
-  serverProxy({ target: 'http://localhost:3001' }),
   isProduction ? idempotent() : development({ compiler }),
   isProduction ? idempotent() : modulesLoad({ compiler }),
-  application({ Application, rootReducer, BUILD_FOLDER }),
+  serverProxy({ target: 'http://localhost:3001' })
 ]
 
 middlewareList
