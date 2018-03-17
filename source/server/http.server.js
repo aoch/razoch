@@ -28,10 +28,10 @@ logger.debug(`[http.server] ${BUILD_FOLDER}`)
 
 const middlewareList = [
   // dataCaching(),
-  // isProduction ? compression() : idempotent(),
   serverProxy({ target: 'http://localhost:3001' }),
   isProduction ? idempotent() : development({ compiler }),
   isProduction ? idempotent() : modulesLoad({ compiler }),
+  isProduction ? compression() : idempotent(),
   staticAsset({ BUILD_FOLDER }),
   application({ Routes, rootReducer, BUILD_FOLDER }),
 ]
