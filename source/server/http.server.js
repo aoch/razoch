@@ -19,15 +19,27 @@ import rootReducer from '../store/rootReducer'
 
 const server = express()
 
-const { env: { PORT, NODE_ENV, BUILD_FOLDER } } = process
-const isProduction = NODE_ENV === 'production'
-const compiler = webpack(config)
+const {
+  env: {
+    PROXY_IP,
+    PROXY_PORT,
+    PORT,
+    NODE_ENV,
+    BUILD_FOLDER,
+    HTTPS_KEY,
+    HTTPS_CRT
+  }
+} = process
+
+const isProduction = (NODE_ENV === 'production')
+const target = `${PROXY_IP}:${PROXY_PORT}`
+const hotOptions = { compiler: webpack(config) }
 
 const middlewareList = [
-  serverProxy({ target: 'http://localhost:3001' }),
+  serverProxy({ target }),
   isProduction ? dataCaching() : idempotent(),
-  isProduction ? idempotent() : development({ compiler }),
-  isProduction ? idempotent() : modulesLoad({ compiler }),
+  isProduction ? idempotent() : development(hotOptions),
+  isProduction ? idempotent() : modulesLoad(hotOptions),
   isProduction ? compression() : idempotent(),
   staticAsset({ BUILD_FOLDER }),
   application({ Routes, rootReducer, BUILD_FOLDER }),
@@ -37,8 +49,8 @@ middlewareList
   .map(install(server))
 
 const options = {
-  key: fs.readFileSync('./config/server/.key'),
-  cert: fs.readFileSync('./config/server/.crt'),
+  key: fs.readFileSync(HTTPS_KEY),
+  cert: fs.readFileSync(HTTPS_CRT),
 }
 
 httpServer
