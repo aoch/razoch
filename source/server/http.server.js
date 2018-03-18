@@ -25,7 +25,7 @@ const compiler = webpack(config)
 
 const middlewareList = [
   serverProxy({ target: 'http://localhost:3001' }),
-  dataCaching(),
+  isProduction ? dataCaching() : idempotent(),
   isProduction ? idempotent() : development({ compiler }),
   isProduction ? idempotent() : modulesLoad({ compiler }),
   isProduction ? compression() : idempotent(),
