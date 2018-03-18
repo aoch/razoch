@@ -9,6 +9,12 @@ import handle from './helpers/handle'
 
 const server = express()
 
+const {
+  env: {
+    PORT
+  }
+} = process
+
 const middlewareList = [
   dataCaching(),
   starWarsApi(),
@@ -18,6 +24,5 @@ const middlewareList = [
 middlewareList
   .map(install(server))
 
-const { env: { PORT } } = process
 server
   .listen(PORT, handle(process, 'rest'))
