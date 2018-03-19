@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
 
 import RouteList from '../routes/Routes'
 import buildStore from '../store/buildStore'
@@ -14,7 +15,7 @@ const render = (Routes) => {
   const element = (
     <Provider store={store} >
       <BrowserRouter>
-        <Routes />
+        {renderRoutes(Routes)}
       </BrowserRouter>
     </Provider>
   )

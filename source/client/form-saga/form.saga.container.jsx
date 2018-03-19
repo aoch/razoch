@@ -19,5 +19,15 @@ const mapDispatchToProps = (dispatch) => {
   return props
 }
 
+const loadData = (store) => {
+  // console.debug('Loading data for saga')
+  const url = '/api/people/1'
+  const action = fetchSagaDataRequest(url)
+  const promise = store.dispatch(action)
+  return promise
+}
+
+export { loadData }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Form)
 
