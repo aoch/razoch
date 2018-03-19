@@ -1,3 +1,5 @@
+import 'isomorphic-fetch'
+
 import {
   FETCH_THUNK_DATA_REQUEST,
   FETCH_THUNK_DATA_SUCCESS,
