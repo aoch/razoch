@@ -42,7 +42,7 @@ const middlewareList = [
   isProduction ? idempotent() : modulesLoad(hotOptions),
   isProduction ? compression() : idempotent(),
   staticAsset({ BUILD_FOLDER }),
-  application({ Routes, rootReducer, BUILD_FOLDER }),
+  application({ Routes, isProduction, rootReducer, BUILD_FOLDER }),
 ]
 
 middlewareList

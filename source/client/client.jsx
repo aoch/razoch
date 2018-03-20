@@ -9,7 +9,8 @@ import buildStore from '../store/buildStore'
 import './client.scss'
 
 const isProduction = (process.env.NODE_ENV === 'production')
-const store = buildStore(isProduction, {})
+const store = buildStore(isProduction, window.STATE)
+window.STATE = undefined
 
 const render = (Routes) => {
   const element = (
@@ -20,7 +21,7 @@ const render = (Routes) => {
     </Provider>
   )
   const domNode = document.querySelector('main')
-  ReactDOM.render(element, domNode)
+  ReactDOM.hydrate(element, domNode)
 }
 
 render(RouteList)
