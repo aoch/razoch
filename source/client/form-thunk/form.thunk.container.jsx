@@ -18,11 +18,12 @@ const mapDispatchToProps = (dispatch) => {
   return props
 }
 
-const loadData = (store) => {
-  // console.debug('Loading data for thunk')
-  const url = '/api/people/1'
-  const action = fetchThunkDataRequest(url)
-  const promise = store.dispatch(action)
+const loadData = (store, request) => {
+  const { protocol } = request
+  const hostname = request.get('Host')
+  const url = `${protocol}://${hostname}/api/people/1`
+  const { dispatch } = store
+  const promise = fetchThunkDataRequest(url)(dispatch)
   return promise
 }
 
