@@ -12,18 +12,18 @@ const fetchSagaDataRequest = (data) => {
   return action
 }
 
-const fetchSagaDataSuccess = (data) => {
+const fetchSagaDataSuccess = (pass) => {
   const action = {
     type: FETCH_SAGA_DATA_SUCCESS,
-    payload: data
+    payload: pass
   }
   return action
 }
 
-const fetchSagaDataFailure = (error) => {
+const fetchSagaDataFailure = (fail) => {
   const action = {
     type: FETCH_SAGA_DATA_FAILURE,
-    payload: error
+    payload: fail
   }
   return action
 }
