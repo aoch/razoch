@@ -1,22 +1,4 @@
-// ------------------------------------------------------------------
-// Functionality Tasks
-// ------------------------------------------------------------------
-(*) Add emojis to your logger messages (https://getemoji.com/) console.log('😀')
-(*) Update Readme.md to have more detail
-(*) Add additional react-router routes
-(*) Add authentication middleware
-(*) Add authorization middleware
-// ------------------------------------------------------------------
+(1) DONE: Render thunk on server and client
+(2) Render saga on server and client
+(3) Render epic on server and client
 
-// ------------------------------------------------------------------
-// CleanUp Tasks
-// ------------------------------------------------------------------
-(*) Add ErrorBoundaries around each of your components
-(*) Add logging development and moduleLoad middleware components
-(*) Add aliases into Jest and Webpack Configs to shorten import paths across application and test code
-(*) Add logic to fail prepush if unused packages in dependencies section e.g.
-    npm add npm-check
-    node_modules/.bin/npm-check -p  | grep NOTUSED
-(*) Create a patch for bundlesize that allows you to pass in config
-(*) Add logic to ensure git commit messages follow an agreed format
-// ------------------------------------------------------------------
