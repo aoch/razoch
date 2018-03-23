@@ -24,29 +24,32 @@ const application = (props) => ({
     const store = buildStore(isProduction)
     const { path } = request
     const dataList = matchRoutes(Routes, path).map(getData(store, request))
-
+    const handler = () => {
+      const context = {}
+      const jsx = (
+        <Provider store={store}>
+          <StaticRouter context={context} location={path}>
+            {renderRoutes(Routes)}
+          </StaticRouter>
+        </Provider>
+      )
+      const content = renderToString(jsx)
+      const contentPlaceholder = 'CONTENT'
+      const pathToFile = `${BUILD_FOLDER}/client/client.html`
+      const template = fs.readFileSync(pathToFile, 'utf-8').toString()
+      const statePlaceholder = 'STATE'
+      const state = `window.STATE=${JSON.stringify(store.getState())}`
+      const data = template
+        .replace(contentPlaceholder, content)
+        .replace(statePlaceholder, state)
+      response.send(data)
+    }
+    // ToDo: We need to not fail-fast (Instead we
+    // should wait for all promises to reject/resolve)
     Promise
       .all(dataList)
-      .then(() => {
-        const context = {}
-        const jsx = (
-          <Provider store={store}>
-            <StaticRouter context={context} location={path}>
-              {renderRoutes(Routes)}
-            </StaticRouter>
-          </Provider>
-        )
-        const content = renderToString(jsx)
-        const contentPlaceholder = 'CONTENT'
-        const pathToFile = `${BUILD_FOLDER}/client/client.html`
-        const template = fs.readFileSync(pathToFile, 'utf-8').toString()
-        const statePlaceholder = 'STATE'
-        const state = `window.STATE=${JSON.stringify(store.getState())}`
-        const data = template
-          .replace(contentPlaceholder, content)
-          .replace(statePlaceholder, state)
-        response.send(data)
-      })
+      .then(handler)
+      .catch(handler)
   }
 })
 

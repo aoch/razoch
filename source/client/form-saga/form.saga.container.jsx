@@ -3,11 +3,20 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Form from './form.saga.component'
-import { fetchSagaDataRequest } from './form.saga.action.creators'
+import {
+  fetchSagaDataRequest,
+  fetchSagaDataSuccess,
+  fetchSagaDataFailure,
+} from './form.saga.action.creators'
 
 const mapStateToProps = (state) => {
-  const { formSaga: { done, data } } = state
-  const message = done ? data : 'loading...'
+  const { formSaga: { done, pass, fail } } = state
+  const message = (done && pass)
+    ? pass
+    : (done && fail)
+      ? fail
+      : 'loading...'
+
   const props = { message }
   return props
 }
@@ -18,6 +27,34 @@ const mapDispatchToProps = (dispatch) => {
   const props = bindActionCreators(methods, dispatch)
   return props
 }
+
+const loadData = (store, request) => {
+  const promise = new Promise((resolve, reject) => {
+    const handler = () => {
+      const state = store.getState()
+      const { formSaga: { done, pass, fail } } = state
+      if (done) {
+        if (pass) {
+          // console.log('[resolve]', pass)
+          resolve(fetchSagaDataSuccess(pass))
+        } else {
+          // console.log('[reject]', fail)
+          reject(fetchSagaDataFailure(fail))
+        }
+      }
+    }
+    store.subscribe(handler)
+
+    const { protocol } = request
+    const hostname = request.get('Host')
+    const url = `${protocol}://${hostname}/api/people/1`
+    const requestAction = fetchSagaDataRequest(url)
+    store.dispatch(requestAction)
+  })
+  return promise
+}
+
+export { loadData }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)
 
