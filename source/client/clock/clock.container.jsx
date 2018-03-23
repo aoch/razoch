@@ -15,14 +15,4 @@ const mapDispatchToProps = (dispatch) => {
   return props
 }
 
-const loadData = (store) => {
-  // console.debug('Loading data for clock')
-  const time = new Date().getTime()
-  const action = updateClock(time)
-  const promise = store.dispatch(action)
-  return promise
-}
-
-export { loadData }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Clock)
