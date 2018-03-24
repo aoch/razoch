@@ -4,6 +4,8 @@ import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom'
 import { matchRoutes, renderRoutes } from 'react-router-config'
+import serialize from 'serialize-javascript'
+
 import buildStore from '../../store/buildStore'
 
 import logger from '../../helpers/logger'
@@ -38,7 +40,7 @@ const application = (props) => ({
       const pathToFile = `${BUILD_FOLDER}/client/client.html`
       const template = fs.readFileSync(pathToFile, 'utf-8').toString()
       const statePlaceholder = 'STATE'
-      const state = `window.STATE=${JSON.stringify(store.getState())}`
+      const state = `window.STATE=${serialize(store.getState())}`
       const data = template
         .replace(contentPlaceholder, content)
         .replace(statePlaceholder, state)
