@@ -54,7 +54,11 @@ const loadData = (store, request) => {
     .catch((error) => error)
 }
 
-export { loadData }
+const FormSagaContainer = connect(mapStateToProps, mapDispatchToProps)(Form)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+const FormSagaRoute = {
+  component: FormSagaContainer,
+  loadData
+}
 
+export { FormSagaRoute, FormSagaContainer }
