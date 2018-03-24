@@ -35,10 +35,8 @@ const loadData = (store, request) => {
       const { formSaga: { done, pass, fail } } = state
       if (done) {
         if (pass) {
-          // console.log('[resolve]', pass)
           resolve(fetchSagaDataSuccess(pass))
         } else {
-          // console.log('[reject]', fail)
           reject(fetchSagaDataFailure(fail))
         }
       }
@@ -52,6 +50,8 @@ const loadData = (store, request) => {
     store.dispatch(requestAction)
   })
   return promise
+    .then((data) => data)
+    .catch((error) => error)
 }
 
 export { loadData }

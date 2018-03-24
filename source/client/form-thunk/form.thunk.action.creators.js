@@ -7,21 +7,22 @@ import {
   FETCH_THUNK_DATA_FAILURE
 } from './form.thunk.action.types'
 
-const fetchThunkDataSuccess = (data) => {
+const fetchThunkDataFailure = (fail) => {
   const action = {
-    type: FETCH_THUNK_DATA_SUCCESS,
-    payload: data
+    type: FETCH_THUNK_DATA_FAILURE,
+    payload: fail
   }
   return action
 }
 
-const fetchThunkDataFailure = (error) => {
+const fetchThunkDataSuccess = (pass) => {
   const action = {
-    type: FETCH_THUNK_DATA_FAILURE,
-    payload: error
+    type: FETCH_THUNK_DATA_SUCCESS,
+    payload: pass
   }
   return action
 }
+
 
 const fetchThunkDataRequest = (url) => (dispatch) => {
   const action = {
@@ -39,7 +40,7 @@ const fetchThunkDataRequest = (url) => (dispatch) => {
 }
 
 export {
-  fetchThunkDataRequest,
+  fetchThunkDataFailure,
   fetchThunkDataSuccess,
-  fetchThunkDataFailure
+  fetchThunkDataRequest
 }

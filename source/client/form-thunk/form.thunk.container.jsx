@@ -2,11 +2,20 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Form from './form.thunk.component'
-import { fetchThunkDataRequest } from './form.thunk.action.creators'
+import {
+  fetchThunkDataRequest,
+  fetchThunkDataSuccess,
+  fetchThunkDataFailure,
+} from './form.thunk.action.creators'
 
 const mapStateToProps = (state) => {
-  const { formThunk: { done, data } } = state
-  const message = done ? data : 'loading...'
+  const { formThunk: { done, pass, fail } } = state
+  const message = (done && pass)
+    ? pass
+    : (done && fail)
+      ? fail
+      : 'loading...'
+
   const props = { message }
   return props
 }
@@ -19,12 +28,29 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const loadData = (store, request) => {
-  const { protocol } = request
-  const hostname = request.get('Host')
-  const url = `${protocol}://${hostname}/api/people/1`
-  const { dispatch } = store
-  const promise = fetchThunkDataRequest(url)(dispatch)
+  const promise = new Promise((resolve, reject) => {
+    const handler = () => {
+      const state = store.getState()
+      const { formThunk: { done, pass, fail } } = state
+      if (done) {
+        if (pass) {
+          resolve(fetchThunkDataSuccess(pass))
+        } else {
+          reject(fetchThunkDataFailure(fail))
+        }
+      }
+    }
+    store.subscribe(handler)
+
+    const { protocol } = request
+    const hostname = request.get('Host')
+    const url = `${protocol}://${hostname}/api/people/1`
+    const requestAction = fetchThunkDataRequest(url)
+    store.dispatch(requestAction)
+  })
   return promise
+    .then((data) => data)
+    .catch((error) => error)
 }
 
 export { loadData }

@@ -4,10 +4,10 @@ import {
   FETCH_SAGA_DATA_FAILURE
 } from './form.saga.action.types'
 
-const fetchSagaDataRequest = (data) => {
+const fetchSagaDataFailure = (fail) => {
   const action = {
-    type: FETCH_SAGA_DATA_REQUEST,
-    payload: data
+    type: FETCH_SAGA_DATA_FAILURE,
+    payload: fail
   }
   return action
 }
@@ -20,16 +20,16 @@ const fetchSagaDataSuccess = (pass) => {
   return action
 }
 
-const fetchSagaDataFailure = (fail) => {
+const fetchSagaDataRequest = (url) => {
   const action = {
-    type: FETCH_SAGA_DATA_FAILURE,
-    payload: fail
+    type: FETCH_SAGA_DATA_REQUEST,
+    payload: url
   }
   return action
 }
 
 export {
-  fetchSagaDataRequest,
+  fetchSagaDataFailure,
   fetchSagaDataSuccess,
-  fetchSagaDataFailure
+  fetchSagaDataRequest
 }
