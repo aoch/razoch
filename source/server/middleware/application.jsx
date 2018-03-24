@@ -49,7 +49,6 @@ const application = (props) => ({
     Promise
       .all(dataList)
       .then(handler)
-      .catch(handler)
   }
 })
 
