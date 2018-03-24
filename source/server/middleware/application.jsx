@@ -6,7 +6,7 @@ import { StaticRouter } from 'react-router-dom'
 import { matchRoutes, renderRoutes } from 'react-router-config'
 import buildStore from '../../store/buildStore'
 
-import logger from '../helpers/logger'
+import logger from '../../helpers/logger'
 
 const getData = (store, request) => ({ route }) => {
   const { loadData = () => Promise.resolve(true) } = route

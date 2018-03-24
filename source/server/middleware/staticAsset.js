@@ -1,5 +1,5 @@
 import express from 'express'
-import logger from '../helpers/logger'
+import logger from '../../helpers/logger'
 
 const staticAsset = (props) => ({
   urlPattern: '/',

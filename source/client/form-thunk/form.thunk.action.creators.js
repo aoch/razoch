@@ -1,5 +1,4 @@
-import 'isomorphic-fetch'
-import { Agent } from 'https'
+import fetch from '../../helpers/fetch'
 
 import {
   FETCH_THUNK_DATA_REQUEST,
@@ -30,11 +29,7 @@ const fetchThunkDataRequest = (url) => (dispatch) => {
     payload: ''
   }
   dispatch(action)
-  const options = {
-    agent: new Agent({ rejectUnauthorized: false }) // Only needed for self-signed certificates
-  }
-  return fetch(url, options)
-    .then((response) => response.json())
+  return fetch(url)
     .then(({ name }) => dispatch(fetchThunkDataSuccess(name)))
     .catch((error) => dispatch(fetchThunkDataFailure(error.toString())))
 }
