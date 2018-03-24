@@ -1,3 +1,6 @@
+import 'isomorphic-fetch'
+import { Agent } from 'https'
+
 import {
   Observable
 } from 'rxjs'
@@ -12,14 +15,17 @@ import {
 } from './form.epic.action.creators'
 
 function getDataEpic(action$) {
-  const onSuccess = ({ name, detail }) => fetchEpicDataSuccess(name || detail)
-  const onFailure = (error) => Observable.of(fetchEpicDataFailure(error.toString()))
+  const onSuccess = ({ name }) => fetchEpicDataSuccess(name)
+  const onFailure = (error) => fetchEpicDataFailure(error.toString())
+  const options = {
+    agent: new Agent({ rejectUnauthorized: false }) // Only needed for self-signed certificates
+  }
   return action$.ofType(FETCH_EPIC_DATA_REQUEST)
     .switchMap((action) =>
-      Observable.ajax
-        .getJSON(action.payload)
-        .map(onSuccess)
-        .catch(onFailure))
+      Observable.from(fetch(action.payload, options)
+        .then((response) => response.json())
+        .then(onSuccess)
+        .catch(onFailure)))
 }
 
 export default getDataEpic

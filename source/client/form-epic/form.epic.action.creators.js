@@ -4,6 +4,22 @@ import {
   FETCH_EPIC_DATA_FAILURE
 } from './form.epic.action.types'
 
+const fetchEpicDataFailure = (fail) => {
+  const action = {
+    type: FETCH_EPIC_DATA_FAILURE,
+    payload: fail
+  }
+  return action
+}
+
+const fetchEpicDataSuccess = (pass) => {
+  const action = {
+    type: FETCH_EPIC_DATA_SUCCESS,
+    payload: pass
+  }
+  return action
+}
+
 const fetchEpicDataRequest = (url) => {
   const action = {
     type: FETCH_EPIC_DATA_REQUEST,
@@ -12,24 +28,8 @@ const fetchEpicDataRequest = (url) => {
   return action
 }
 
-const fetchEpicDataSuccess = (data) => {
-  const action = {
-    type: FETCH_EPIC_DATA_SUCCESS,
-    payload: data
-  }
-  return action
-}
-
-const fetchEpicDataFailure = (error) => {
-  const action = {
-    type: FETCH_EPIC_DATA_FAILURE,
-    payload: error
-  }
-  return action
-}
-
 export {
-  fetchEpicDataRequest,
+  fetchEpicDataFailure,
   fetchEpicDataSuccess,
-  fetchEpicDataFailure
+  fetchEpicDataRequest
 }
