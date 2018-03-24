@@ -53,6 +53,11 @@ const loadData = (store, request) => {
     .catch((error) => error)
 }
 
-export { loadData }
+const FormThunkContainer = connect(mapStateToProps, mapDispatchToProps)(Form)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+const FormThunkRoute = {
+  component: FormThunkContainer,
+  loadData
+}
+
+export { FormThunkRoute, FormThunkContainer }

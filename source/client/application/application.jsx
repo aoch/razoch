@@ -2,11 +2,11 @@ import React, { Fragment } from 'react'
 
 import ClockContainer from '../clock/clock.container'
 import InputContainer from '../input/input.container'
-import FormThunkContainer from '../form-thunk/form.thunk.container'
-import FormEpicContainer from '../form-epic/form.epic.container'
-import FormSagaContainer from '../form-saga/form.saga.container'
+import { FormThunkContainer, FormThunkRoute } from '../form-thunk/form.thunk.container'
+import { FormEpicContainer, FormEpicRoute } from '../form-epic/form.epic.container'
+import { FormSagaContainer, FormSagaRoute } from '../form-saga/form.saga.container'
 
-export default () => (
+const Application = () => (
   <Fragment>
     <ClockContainer />
     <InputContainer />
@@ -15,3 +15,17 @@ export default () => (
     <FormSagaContainer />
   </Fragment>
 )
+
+const loadData = (store, request) => Promise.all([
+  FormThunkRoute.loadData(store, request),
+  FormEpicRoute.loadData(store, request),
+  FormSagaRoute.loadData(store, request),
+])
+
+const ApplicationRoute = {
+  component: Application,
+  loadData
+}
+
+export { ApplicationRoute, Application }
+

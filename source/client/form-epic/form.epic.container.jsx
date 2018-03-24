@@ -53,6 +53,11 @@ const loadData = (store, request) => {
     .catch((error) => error)
 }
 
-export { loadData }
+const FormEpicContainer = connect(mapStateToProps, mapDispatchToProps)(Form)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+const FormEpicRoute = {
+  component: FormEpicContainer,
+  loadData
+}
+
+export { FormEpicRoute, FormEpicContainer }
