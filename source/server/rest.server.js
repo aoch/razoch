@@ -4,8 +4,8 @@ import express from 'express'
 import dataCaching from './middleware/dataCaching'
 import starWarsApi from './middleware/starWarsApi'
 import handleError from './middleware/handleError'
-import install from './helpers/install'
-import handle from './helpers/handle'
+import install from '../helpers/install'
+import handle from '../helpers/handle'
 
 const server = express()
 
