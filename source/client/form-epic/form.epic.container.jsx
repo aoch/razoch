@@ -10,12 +10,7 @@ import {
 
 const mapStateToProps = (state) => {
   const { formEpic: { done, pass, fail } } = state
-  const message = (done && pass)
-    ? pass
-    : (done && fail)
-      ? fail
-      : 'loading...'
-
+  const message = done ? (fail || pass) : 'loading...'
   const props = { message }
   return props
 }
