@@ -1,10 +1,10 @@
 import path from 'path'
 import webpack from 'webpack'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import CompressionWebpackPlugin from 'compression-webpack-plugin'
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
 const { env: { NODE_ENV, BABEL_FILE, CLIENT_FOLDER } } = process
 
@@ -40,7 +40,7 @@ const clientConfig = {
     ]
   },
   plugins: [
-    new FaviconsWebpackPlugin('./source/pages/favicon.png'),
+    new CopyWebpackPlugin([{ from: './source/pages/favicon.png', to: 'favicon.png' }]),
     new UglifyJSPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
     new ExtractTextPlugin('./client.[contenthash].css'),
