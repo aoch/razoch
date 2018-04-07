@@ -1,0 +1,8 @@
+# Search all directories in project folder for duplicated code
+# (But ignore the folders explicitly excluded)
+path: ../..
+exclude:
+  - "**/build/**"
+  - "**/config/**"
+  - "**/node_modules/**"
+limit: 3
