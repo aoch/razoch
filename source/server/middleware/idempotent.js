@@ -1,4 +1,4 @@
-import logger from '../../helpers/logger'
+import logger from '../utilities/logger'
 
 const idempotent = () => ({
   urlPattern: '/',

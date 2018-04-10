@@ -9,7 +9,7 @@ import serialize from 'serialize-javascript'
 import buildStore from '../../store/buildStore'
 
 import always from '../../helpers/always'
-import logger from '../../helpers/logger'
+import logger from '../utilities/logger'
 
 const loadUpData = (store, props, request) => {
   const { Routes } = props
