@@ -1,5 +1,5 @@
 import apicache from 'apicache'
-import logger from '../../helpers/logger'
+import logger from '../utilities/logger'
 
 const dataCaching = () => ({
   urlPattern: '/',
