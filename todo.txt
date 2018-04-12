@@ -8,7 +8,6 @@ SPRINT
 ---------------------------------------------------------------------------------------------------
 BACKLOG
 ---------------------------------------------------------------------------------------------------
-(*) Move webpack babel config out of package.json
 (*) Update Readme.md to have more detail
 (*) Add ErrorBoundaries around each of your components
 (*) Add logging to development and moduleLoad middleware components

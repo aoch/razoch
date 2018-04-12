@@ -4,9 +4,8 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-const { env: { NODE_ENV, BABEL_FILE, CLIENT_FOLDER } } = process
+const { env: { NODE_ENV, CLIENT_FOLDER } } = process
 
-const babelFile = path.resolve(process.cwd(), BABEL_FILE)
 const clientFolder = path.resolve(process.cwd(), CLIENT_FOLDER)
 
 const clientConfig = {
@@ -29,10 +28,7 @@ const clientConfig = {
         test: /\.(jsx?)$/,
         exclude: [/node_modules/, /build/, /config/],
         use: {
-          loader: 'babel-loader',
-          options: {
-            extends: babelFile
-          }
+          loader: 'babel-loader'
         }
       },
       {
