@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DigitalClock from './digital.component'
 import AnalogClock from './analog.component'
@@ -22,10 +22,10 @@ class Clock extends Component {
     clearInterval(this.interval)
 
   render = () => (
-    <Fragment >
+    <div className="clocks">
       <DigitalClock time={this.props.time} timezone={this.props.timezone} />
       <AnalogClock time={this.props.time} timezone={this.props.timezone} />
-    </Fragment>
+    </div>
   )
 }
 
